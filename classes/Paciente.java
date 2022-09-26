@@ -19,7 +19,7 @@ public class Paciente extends Pessoa{
   public Paciente (String novoCpf, String novoNome, String novoEndereco) {
     super(novoCpf, novoNome);
     super.endereco = novoEndereco;
-    estaNaUti= false;
+    estaNaUti = false;
     
    }
 
