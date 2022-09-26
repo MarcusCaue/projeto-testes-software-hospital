@@ -1,3 +1,4 @@
+package classes;
 public abstract class Funcionario extends Pessoa{
 
   public Funcionario(String novoCpf, String novoNome) {

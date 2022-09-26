@@ -1,3 +1,4 @@
+package classes;
 public class Fisioterapeuta extends Funcionario   {
   public Fisioterapeuta(String n, String c) {
     super(n,c);

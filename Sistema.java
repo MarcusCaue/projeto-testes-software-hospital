@@ -1,4 +1,11 @@
+
 import java.util.*;
+
+import classes.Enfermeiro;
+import classes.Funcionario;
+import classes.Medico;
+import classes.Paciente;
+import interfaces.FuncionalidadesIF;
 
 public class Sistema implements FuncionalidadesIF {
   /**

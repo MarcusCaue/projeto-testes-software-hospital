@@ -1,3 +1,4 @@
+package classes;
 
 /**
 * Essa classe representa um paciente que está dando entrada num hospital.

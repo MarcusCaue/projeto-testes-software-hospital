@@ -1,3 +1,4 @@
+package classes;
 
 /**
 * Essa classe representa um médico que está trabalhando em um hospital.

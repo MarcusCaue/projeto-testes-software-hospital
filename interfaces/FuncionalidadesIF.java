@@ -1,4 +1,10 @@
+package interfaces;
 import java.util.*;
+
+import classes.Enfermeiro;
+import classes.Funcionario;
+import classes.Medico;
+import classes.Paciente;
 public interface FuncionalidadesIF {
 
   /**
