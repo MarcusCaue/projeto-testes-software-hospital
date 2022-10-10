@@ -4,7 +4,14 @@ import java.util.*;
 
 class Main {
   public static void main(String[] args) {
-    Hospital hp1 = new Hospital("Hospital da Grécia");
+    Sistema sistemaHospital = new Sistema();
+
+    sistemaHospital.inicializaSistema();
+
+    System.out.println();
+    
+    
+    /* Hospital hp1 = new Hospital("Hospital da Grécia");
 
     Paciente p1 = new Paciente("123.456.789-10", "Jonas", "Brabos");
     p1.setProcedimento("Alta");
@@ -21,7 +28,7 @@ class Main {
     hp1.addFuncionario(f1); hp1.addFuncionario(e1); hp1.addFuncionario(m1);
 
     System.out.println(hp1.getPacientes());
-    System.out.println(hp1.getFuncionarios());
+    System.out.println(hp1.getFuncionarios()); */
 
   }
 }

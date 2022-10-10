@@ -1,20 +1,20 @@
-
 import java.util.*;
 
-import classes.Enfermeiro;
-import classes.Funcionario;
-import classes.Medico;
-import classes.Paciente;
+import classes.*;
 import interfaces.FuncionalidadesIF;
 
 public class Sistema implements FuncionalidadesIF {
+
+  Hospital hospital;
+
   /**
-  * Esse método deve inicializar o banco de dados e carregar a informação do hospital em um  objeto do tipo Hospital.
+  * Esse método deve inicializar o banco de dados e carregar a informação do hospital em um objeto do tipo Hospital.
   */
-  public void inicializaSistema(){}
+  public void inicializaSistema(){
+    this.hospital = new Hospital("Hospital São Francisco de Assis");
+  }
  
   public void finalizaSistema(){}
-
 
   //Funcionalidade que cadastra o paciente no sistema 
   public void cadastraPaciente(String novoCpf, String novoNome, String novoEndereco){}
@@ -47,6 +47,5 @@ public class Sistema implements FuncionalidadesIF {
   public int getNumeroDeFuncionarios(){return 0;}
   public void atendimento(String cpfFuncionario, String cpfPaciente){}
   public double atendimentoMedico(String crmMedico, String cpfPaciente){return 0;}
-  
-  
+
 }
