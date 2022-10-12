@@ -92,10 +92,22 @@ public class Sistema implements FuncionalidadesIF {
   }
 
   private void salvarFuncionariosOnBd() {
-    File arqPath = new File("./database/pacientes.txt");
+    File arqPath = new File("./database/funcionarios.txt");
 
     // Obtendo a lista de funcionários cadastrados no Hospital
     ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
+
+    Fisioterapeuta fs = new Fisioterapeuta("332.443.545-12", "Miguel Ryan");
+    fs.setEndereco("Rua Aleatoria"); fs.setRg("2.443.443.112");
+
+    Enfermeiro ef = new Enfermeiro("332.443.551-32", "Paula Miranda");
+    ef.setRg("2.565.788.197");
+
+    Medico m = new Medico("543.237.866-12", "Maria Luiza Magna", "55442331");
+
+    funcionarios.add(fs);
+    funcionarios.add(ef);
+    funcionarios.add(m);
 
     try {
       FileWriter arqWriter = new FileWriter(arqPath);
@@ -123,12 +135,13 @@ public class Sistema implements FuncionalidadesIF {
       String cpf = f.getCpf();
       String endereco = f.getEndereco();
       String rg = f.getRg();
-      String crm = f.getRg();
 
       String line = String.format("%s;%s;%s;",
       funcao, cpf, nome);
 
       if (funcao.equals("Medico")) {
+        Medico medico = (Medico) f;
+        String crm = medico.getCrm();
         line += crm + ";";
       } else {
         line += "null;";
@@ -140,7 +153,13 @@ public class Sistema implements FuncionalidadesIF {
         line += endereco + ";";
       }
 
-      // arq.println(line);
+      if (rg.equals("")) {
+        line += "null;";
+      } else {
+        line += rg;
+      }
+
+      arq.println(line);
     }
   }
 
