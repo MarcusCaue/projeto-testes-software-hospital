@@ -1,7 +1,7 @@
 package classes;
 public class Enfermeiro extends Funcionario  {
-  public Enfermeiro(String n, String c) {
-    super(n,c);
+  public Enfermeiro(String novoCpf, String novoNome) {
+    super(novoCpf, novoNome);
   }
 
   public void atende(Paciente p) {

@@ -1,7 +1,7 @@
 package classes;
 public class Fisioterapeuta extends Funcionario   {
-  public Fisioterapeuta(String n, String c) {
-    super(n,c);
+  public Fisioterapeuta(String novoCpf, String novoNome) {
+    super(novoCpf, novoNome);
   }
 
    public void atende(Paciente p) {

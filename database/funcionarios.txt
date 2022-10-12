@@ -1,0 +1,3 @@
+Função;cpf;nome;crm;endereco;rg
+Enfermeiro;123.456.789-10;Jonas de Samos;null;null;null
+Medico;123.456.789-10;Jonas de Samos;1234567;Rua dos Filósofos Brabos;1.234.456.789

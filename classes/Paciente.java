@@ -20,7 +20,6 @@ public class Paciente extends Pessoa{
     super(novoCpf, novoNome);
     super.endereco = novoEndereco;
     estaNaUti = false;
-    
    }
 
 

@@ -1,0 +1,2 @@
+cpf;nome;endereco;rg;peso;altura;estaNaUti;procedimento
+123.456.789-10;Amanda de Abdera;Rua dos Filósofos Brabos;1.234.567.891;89.97;1.65;false;fila de espera
