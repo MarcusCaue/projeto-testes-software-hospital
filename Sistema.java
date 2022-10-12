@@ -8,12 +8,7 @@ public class Sistema implements FuncionalidadesIF {
   Hospital hospital;
 
   /**
-    * Esse método deve inicializar o banco de dados e carregar a informação do hospital em um objeto do tipo Hospital.
-    * Casos de Teste: 
-    *    1 - Arquivo Existente e com Conteúdo;
-    *    2 - Arquivo Existente e sem Conteúdo;
-    *    3 - Arquivo Inexistente;
-    *    4 - Tratamento do IOException;   
+  * Esse método deve inicializar o banco de dados e carregar a informação do hospital em um objeto do tipo Hospital.
   */
   public void inicializaSistema() {
     inicializaHospital();
@@ -59,6 +54,11 @@ public class Sistema implements FuncionalidadesIF {
 
   /**
    * Inicializa o Hospital acessando o BD
+   * Casos de Teste: 
+   *     1 - Arquivo Existente e com Conteúdo;
+   *     2 - Arquivo Existente e sem Conteúdo;
+   *     3 - Arquivo Inexistente;
+   *     4 - Tratamento do IOException;   
    */
   public void inicializaHospital() {
     Scanner entrada = new Scanner(System.in);
@@ -129,6 +129,9 @@ public class Sistema implements FuncionalidadesIF {
 
   /**
    * Busca no BD os dados dos pacientes cadastrados
+   * Casos de Teste:
+   *  1 - Arquivo existente com e sem conteúdo (funciona da mesma forma).
+   *  2 - Arquivo inexistente.
    */
   public void getPacientesOnBd() {
     File arqPath = new File("./database/pacientes.txt");
