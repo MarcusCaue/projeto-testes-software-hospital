@@ -17,8 +17,8 @@ public class Sistema implements FuncionalidadesIF {
   */
   public void inicializaSistema() {
     inicializaHospital();
-
-
+    getPacientesOnBd();
+    getFuncionariosOnBd();
   }
  
   public void finalizaSistema(){
@@ -57,6 +57,9 @@ public class Sistema implements FuncionalidadesIF {
     System.exit(0);
   }
 
+  /**
+   * Inicializa o Hospital acessando o BD
+   */
   public void inicializaHospital() {
     Scanner entrada = new Scanner(System.in);
     String nomeHospital;
@@ -86,7 +89,7 @@ public class Sistema implements FuncionalidadesIF {
 
       // Do contrário, instancia um objeto do tipo Hospital
       this.hospital = new Hospital(nomeHospital);
-      System.out.printf("O sistema do Hospital '%s' está funcionário com sucesso!", nomeHospital);
+      System.out.printf("O sistema do Hospital '%s' está funcionário com sucesso!\n", nomeHospital);
 
       // Fechando os arquivos abertos
       arq.close();
@@ -109,7 +112,7 @@ public class Sistema implements FuncionalidadesIF {
 
         // Do contrário, instancia um objeto do tipo Hospital
         this.hospital = new Hospital(nomeHospital);
-        System.out.printf("O sistema do Hospital '%s' está funcionário com sucesso!", nomeHospital);
+        System.out.printf("O sistema do Hospital '%s' está funcionário com sucesso!\n", nomeHospital);
 
       } 
       // Caso algum erro do tipo IO ocorra, encerra o programa.
@@ -124,9 +127,62 @@ public class Sistema implements FuncionalidadesIF {
     }
   }
 
+  /**
+   * Busca no BD os dados dos pacientes cadastrados
+   */
+  public void getPacientesOnBd() {
+    File arqPath = new File("./database/pacientes.txt");
 
+    try {
+      FileReader arqReader = new FileReader(arqPath);
+      BufferedReader arq = new BufferedReader(arqReader);
 
+      while (arq.ready()) {
+        // Lendo os dados do arquivo
+        String[] dados = arq.readLine().split(";");
 
+        // Instanciando um paciente
+        Paciente p = new Paciente(dados[0], dados[1], dados[2]);
+
+        /* Verificando se ele possui os outros atributos */
+        String rg = dados[3];
+        Double peso = Double.parseDouble(dados[4]);
+        Integer altura = Integer.parseInt(dados[5]);
+        boolean estaNaUti = Boolean.parseBoolean(dados[6]);
+        String procedimento = dados[7]; 
+
+        if (rg != null) { p.setRg(rg); }
+        if (peso != null) { p.setPeso(peso); }
+        if (altura != null) { p.setAltura(altura); }
+        if (estaNaUti) { p.setEstaNaUti(estaNaUti); }
+        if (procedimento != null) { p.setProcedimento(procedimento); }
+        
+        // Por fim, adiciona o paciente à lista de Pacientes do Hospital
+        this.hospital.addPaciente(p);
+      }
+
+      arqReader.close();
+      arq.close();
+
+    } catch (FileNotFoundException e) {
+      System.out.println("O arquivo de pacientes não foi encontrado. Vamos criá-lo.");
+      try {
+        arqPath.createNewFile();
+      } catch (IOException e1) {
+        encerraPrograma();
+      }
+      System.out.println("A lista de pacientes no total é de 0.");
+    } catch (IOException e) {
+      encerraPrograma();
+    }
+  }
+
+  /**
+   * Busca no BD os dados dos funcionários cadastrados
+   */
+  public void getFuncionariosOnBd() {
+
+  }
 
 
 
