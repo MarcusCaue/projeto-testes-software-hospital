@@ -18,8 +18,8 @@ public class Sistema implements FuncionalidadesIF {
   }
  
   public void finalizaSistema(){
-    salvarPacientesOnBd();
-    salvarFuncionariosOnBd();
+    salvarPacientesOnBd(); // Cadastra/Atualiza os dados dos pacientes no Banco de Dados
+    salvarFuncionariosOnBd(); // Cadastra/Atualiza os dados dos funcionários no Banco de Dados
   }
 
   /**
@@ -46,7 +46,7 @@ public class Sistema implements FuncionalidadesIF {
       encerraPrograma();
     }
 
-    System.out.println("Pacientes cadastrados com sucesso!");
+    System.out.println("Pacientes cadastrados/atualizados com sucesso!");
 
   }
 
@@ -81,7 +81,7 @@ public class Sistema implements FuncionalidadesIF {
 
       line += estaNaUti + ";";
 
-      if (procedimento.equals("") || procedimento == null || procedimento.equals(" ")) {
+      if (procedimento == null || procedimento.equals("") || procedimento.equals(" ")) {
         line += "null";
       } else {
         line += procedimento;
@@ -92,8 +92,58 @@ public class Sistema implements FuncionalidadesIF {
   }
 
   private void salvarFuncionariosOnBd() {
+    File arqPath = new File("./database/pacientes.txt");
+
+    // Obtendo a lista de funcionários cadastrados no Hospital
+    ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
+
+    try {
+      FileWriter arqWriter = new FileWriter(arqPath);
+      PrintWriter arq = new PrintWriter(arqWriter);
+
+      // Salvando os dados de cada funcionário no BD
+      escreverFuncionarios(funcionarios, arq);
+     
+      arqWriter.close();
+      arq.close();
+
+    } catch (IOException e) {
+      encerraPrograma();
+    }
+
+    System.out.println("Dados dos funcionários cadastrados/atualizados com sucesso!");
+
   }
   
+  public void escreverFuncionarios(ArrayList<Funcionario> funcionarios, PrintWriter arq) {
+    for (Funcionario f : funcionarios) {
+      
+      String funcao = f.getClass().getSimpleName();
+      String nome = f.getNome();
+      String cpf = f.getCpf();
+      String endereco = f.getEndereco();
+      String rg = f.getRg();
+      String crm = f.getRg();
+
+      String line = String.format("%s;%s;%s;",
+      funcao, cpf, nome);
+
+      if (funcao.equals("Medico")) {
+        line += crm + ";";
+      } else {
+        line += "null;";
+      }
+
+      if (endereco.equals("")) {
+        line += "null;";
+      } else {
+        line += endereco + ";";
+      }
+
+      // arq.println(line);
+    }
+  }
+
 
   // Função CONCLUÍDA
   /**
