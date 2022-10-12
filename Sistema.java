@@ -18,10 +18,82 @@ public class Sistema implements FuncionalidadesIF {
   }
  
   public void finalizaSistema(){
+    salvarPacientesOnBd();
+    salvarFuncionariosOnBd();
+  }
 
+  /**
+   * Salva os dados dos pacientes cadastrados no Banco de Dados
+   * 
+   */
+  private void salvarPacientesOnBd() {
+    File arqPath = new File("./database/pacientes.txt");
 
+    // Obtendo a lista de pacientes atuais no hospital
+    ArrayList<Paciente> pacientes = this.hospital.getPacientes();
+
+    try {
+      FileWriter arqWriter = new FileWriter(arqPath);
+      PrintWriter arq = new PrintWriter(arqWriter);
+
+      // Salvando os dados de cada paciente no BD
+      escreverPacientes(pacientes, arq);
+     
+      arqWriter.close();
+      arq.close();
+
+    } catch (IOException e) {
+      encerraPrograma();
+    }
+
+    System.out.println("Pacientes cadastrados com sucesso!");
 
   }
+
+  public void escreverPacientes(ArrayList<Paciente> pacientes, PrintWriter arq) {
+    for (Paciente p : pacientes) {
+      String line = String.format("%s;%s;%s;",
+      p.getCpf(), p.getNome(), p.getEndereco());
+
+      String rg = p.getRg();
+      double peso = p.getPeso();
+      int altura = p.getAltura();
+      boolean estaNaUti = p.estaNaUti();
+      String procedimento = p.getProcedimento();
+
+      if (rg.equals("")) {
+        line += "null;";
+      } else {
+        line += rg + ";";
+      }
+
+      if (peso == 0) {
+        line += "null;";
+      } else {
+        line += peso + ";";
+      }
+
+      if (altura == 0) {
+        line += "null;";
+      } else {
+        line += altura + ";";
+      }
+
+      line += estaNaUti + ";";
+
+      if (procedimento.equals("") || procedimento == null || procedimento.equals(" ")) {
+        line += "null";
+      } else {
+        line += procedimento;
+      }
+
+      arq.println(line);
+    }
+  }
+
+  private void salvarFuncionariosOnBd() {
+  }
+  
 
   // Função CONCLUÍDA
   /**

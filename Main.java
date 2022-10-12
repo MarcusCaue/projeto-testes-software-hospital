@@ -7,6 +7,7 @@ class Main {
     Sistema sistemaHospital = new Sistema();
 
     sistemaHospital.inicializaSistema();
+    sistemaHospital.finalizaSistema();
 
     System.out.println();
 
