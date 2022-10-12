@@ -192,6 +192,9 @@ public class Sistema implements FuncionalidadesIF {
 
   /**
    * Busca no BD os dados dos funcionários cadastrados
+   * Casos de Teste:
+   *  1 - Arquivo existente com e sem conteúdo (funciona da mesma forma).
+   *  2 - Arquivo inexistente.
    */
   public void getFuncionariosOnBd() {
     File arqPath = new File("./database/funcionarios.txt");
