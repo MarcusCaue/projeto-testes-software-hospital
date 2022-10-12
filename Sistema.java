@@ -63,8 +63,7 @@ public class Sistema implements FuncionalidadesIF {
 
         // Caso o nome do arquivo seja nulo, encerra o programa
         if (nomeHospital == null) {
-          System.out.println("Sistema encerrado.");
-          System.exit(0);
+          encerraPrograma();
         }
 
         // Do contrário, instancia um objeto do tipo Hospital
@@ -74,17 +73,13 @@ public class Sistema implements FuncionalidadesIF {
       } 
       // Caso algum erro do tipo IO ocorra, encerra o programa.
       catch (IOException e1) {
-        System.out.println("Houve algum problema ao tentar acessar o arquivo. Tente novamente mais tarde.");
-        System.out.println("Sistema encerrado.");
-        System.exit(0);
+        encerraPrograma();
       }
 
     } 
     // Caso algum erro do tipo IO ocorra, encerra o programa.
     catch (IOException e) {
-      System.out.println("Houve algum problema ao tentar acessar o arquivo. Tente novamente mais tarde.");
-      System.out.println("Sistema encerrado.");
-      System.exit(0);
+      encerraPrograma();
     }
   }
  
@@ -111,12 +106,18 @@ public class Sistema implements FuncionalidadesIF {
       gravarArq.close();
       return nomeHospital;
     } catch (IOException e) {
-      System.out.println("Houve algum problema ao tentar acessar o arquivo. Tente novamente mais tarde.");
       return null;
     }
   }
 
-
+  /**
+   * Encerra o programa quando uma IOException é acionada
+   */
+  public void encerraPrograma() {
+    System.out.println("Houve algum problema ao tentar acessar o arquivo. Tente novamente mais tarde.");
+    System.out.println("Sistema encerrado.");
+    System.exit(0);
+  }
 
 
 
