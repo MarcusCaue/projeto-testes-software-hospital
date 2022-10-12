@@ -215,13 +215,13 @@ public class Sistema implements FuncionalidadesIF {
         String rg = dados[5];
 
         // Identificando a função
-        if (crm != null) { f = new Medico(cpf, nome, crm); } 
+        if (! crm.equals("null")) { f = new Medico(cpf, nome, crm); } 
         else if (funcao.equals("Enfermeiro")) { f = new Enfermeiro(cpf, nome); } 
         else { f = new Fisioterapeuta(cpf, nome); }
 
         // Adicionando os outros atributos
-        if (endereco != null) { f.setEndereco(endereco); }
-        if (rg != null) { f.setRg(rg); }
+        if (! endereco.equals("null")) { f.setEndereco(endereco); }
+        if (! rg.equals("null")) { f.setRg(rg); }
 
         // Adicionando o funcionário
         this.hospital.addFuncionario(f);

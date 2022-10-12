@@ -3,4 +3,3 @@
 null;null;null;null;null;null;null;null
 null;Lidia Antonia s2;null;8.444.333.222;null;167;false;null
 099.322.553-43;Romero Galdino;Rua do Cassio;0.443.232.122;71.22;179;true;fila de espera
-cpf;nome;endereco;rg;peso;altura;estaNaUti;procedimento
