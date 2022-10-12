@@ -16,10 +16,51 @@ public class Sistema implements FuncionalidadesIF {
     *    4 - Tratamento do IOException;   
   */
   public void inicializaSistema() {
+    inicializaHospital();
 
+
+  }
+ 
+  public void finalizaSistema(){
+
+
+
+  }
+
+  /**
+   * Função para abrir o BD e cadastrar um Hospital
+   * @param arqPath = variável do tipo File que conterá o caminho de acesso ao arquivo do BD
+   * @param entrada = um Scanner que será utilizado para fazer a leitura do nome do Hospital
+   * @return String = o nome do Hospital quando funciona sem erros e null quando ocorre a IOException
+   */
+  public String cadastraHospital(File arqPath, Scanner entrada) {
+    System.out.print("Parece que o Hospital ainda não foi cadastrado. \nDigite um nome para ele: ");
+    String nomeHospital = entrada.nextLine();
+
+    // Cadastrando esse Hospital no BD
+    try {
+      FileWriter gravarArq = new FileWriter(arqPath);
+      gravarArq.write(nomeHospital);
+      gravarArq.close();
+      return nomeHospital;
+    } catch (IOException e) {
+      return null;
+    }
+  }
+
+  /**
+   * Encerra o programa quando uma IOException é acionada
+   */
+  public void encerraPrograma() {
+    System.out.println("Houve algum problema ao tentar acessar o arquivo. Tente novamente mais tarde.");
+    System.out.println("Sistema encerrado.");
+    System.exit(0);
+  }
+
+  public void inicializaHospital() {
     Scanner entrada = new Scanner(System.in);
     String nomeHospital;
-
+    
     /* Acessando o BD para obter o nome do Hospital */
 
     // Acessa o caminho do arquivo no BD
@@ -82,45 +123,6 @@ public class Sistema implements FuncionalidadesIF {
       encerraPrograma();
     }
   }
- 
-  public void finalizaSistema(){
-
-
-
-  }
-
-  /**
-   * Função para abrir o BD e cadastrar um Hospital
-   * @param arqPath = variável do tipo File que conterá o caminho de acesso ao arquivo do BD
-   * @param entrada = um Scanner que será utilizado para fazer a leitura do nome do Hospital
-   * @return String = o nome do Hospital quando funciona sem erros e null quando ocorre a IOException
-   */
-  public String cadastraHospital(File arqPath, Scanner entrada) {
-    System.out.print("Parece que o Hospital ainda não foi cadastrado. \nDigite um nome para ele: ");
-    String nomeHospital = entrada.nextLine();
-
-    // Cadastrando esse Hospital no BD
-    try {
-      FileWriter gravarArq = new FileWriter(arqPath);
-      gravarArq.write(nomeHospital);
-      gravarArq.close();
-      return nomeHospital;
-    } catch (IOException e) {
-      return null;
-    }
-  }
-
-  /**
-   * Encerra o programa quando uma IOException é acionada
-   */
-  public void encerraPrograma() {
-    System.out.println("Houve algum problema ao tentar acessar o arquivo. Tente novamente mais tarde.");
-    System.out.println("Sistema encerrado.");
-    System.exit(0);
-  }
-
-
-
 
 
 
