@@ -7,13 +7,14 @@ public class Sistema implements FuncionalidadesIF {
 
   Hospital hospital;
 
+  // Função CONCLUÍDA
   /**
   * Esse método deve inicializar o banco de dados e carregar a informação do hospital em um objeto do tipo Hospital.
   */
   public void inicializaSistema() {
-    inicializaHospital();
-    getPacientesOnBd();
-    getFuncionariosOnBd();
+    inicializaHospital(); // Pega os dados do Hospital no BD
+    getPacientesOnBd(); // Consulta os pacientes cadastrados no BD
+    getFuncionariosOnBd(); // Consulta os funcionários cadastrados no BD
   }
  
   public void finalizaSistema(){
@@ -22,6 +23,7 @@ public class Sistema implements FuncionalidadesIF {
 
   }
 
+  // Função CONCLUÍDA
   /**
    * Função para abrir o BD e cadastrar um Hospital
    * @param arqPath = variável do tipo File que conterá o caminho de acesso ao arquivo do BD
@@ -43,6 +45,7 @@ public class Sistema implements FuncionalidadesIF {
     }
   }
 
+  // Função CONCLUÍDA
   /**
    * Encerra o programa quando uma IOException é acionada
    */
@@ -52,6 +55,7 @@ public class Sistema implements FuncionalidadesIF {
     System.exit(0);
   }
 
+  // Função CONCLUÍDA
   /**
    * Inicializa o Hospital acessando o BD
    * Casos de Teste: 
@@ -127,6 +131,7 @@ public class Sistema implements FuncionalidadesIF {
     }
   }
 
+  // Função CONCLUÍDA
   /**
    * Busca no BD os dados dos pacientes cadastrados
    * Casos de Teste:
@@ -190,6 +195,7 @@ public class Sistema implements FuncionalidadesIF {
     }
   }
 
+  // Função CONCLUÍDA
   /**
    * Busca no BD os dados dos funcionários cadastrados
    * Casos de Teste:
