@@ -1,0 +1,6 @@
+123.456.789-10;Amanda de Abdera;Rua dos Filosofos Brabos;1.234.567.891;89.97;165;false;Alta
+938.321.533-12;null;Rua dos Filosofos Brabos;2.332.443.444;100.34;190;false;Alta
+null;null;null;null;null;null;null;null
+null;Lidia Antonia s2;null;8.444.333.222;null;167;false;null
+099.322.553-43;Romero Galdino;Rua do Cassio;0.443.232.122;71.22;179;true;fila de espera
+cpf;nome;endereco;rg;peso;altura;estaNaUti;procedimento

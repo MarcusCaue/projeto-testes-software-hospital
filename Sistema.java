@@ -149,16 +149,26 @@ public class Sistema implements FuncionalidadesIF {
 
         /* Verificando se ele possui os outros atributos */
         String rg = dados[3];
-        Double peso = Double.parseDouble(dados[4]);
-        Integer altura = Integer.parseInt(dados[5]);
-        boolean estaNaUti = Boolean.parseBoolean(dados[6]);
+        String peso = dados[4];
+        String altura = dados[5];
+        String estaNaUti = dados[6];
         String procedimento = dados[7]; 
 
-        if (rg != null) { p.setRg(rg); }
-        if (peso != null) { p.setPeso(peso); }
-        if (altura != null) { p.setAltura(altura); }
-        if (estaNaUti) { p.setEstaNaUti(estaNaUti); }
-        if (procedimento != null) { p.setProcedimento(procedimento); }
+        if (! rg.equals("null")) { 
+          p.setRg(rg); 
+        }
+        if (! peso.equals("null")) { 
+          p.setPeso(Double.parseDouble(peso)); 
+        }
+        if (! altura.equals("null")) { 
+          p.setAltura(Integer.parseInt(altura)); 
+        }
+        if (! estaNaUti.equals("null")) { 
+          p.setEstaNaUti(Boolean.parseBoolean(estaNaUti)); 
+        }
+        if (! procedimento.equals("null")) { 
+          p.setProcedimento(procedimento); 
+        }
         
         // Por fim, adiciona o paciente à lista de Pacientes do Hospital
         this.hospital.addPaciente(p);
@@ -184,6 +194,53 @@ public class Sistema implements FuncionalidadesIF {
    * Busca no BD os dados dos funcionários cadastrados
    */
   public void getFuncionariosOnBd() {
+    File arqPath = new File("./database/funcionarios.txt");
+
+    try {
+      FileReader arqReader = new FileReader(arqPath);
+      BufferedReader arq = new BufferedReader(arqReader);
+
+      while (arq.ready()) {
+        // Lendo os dados do arquivo
+        String[] dados = arq.readLine().split(";");
+
+        Funcionario f;
+
+        /* Analisando os atributos e verificando qual é o tipo de funcionário */
+        String funcao = dados[0];
+        String cpf = dados[1];
+        String nome = dados[2];
+        String crm = dados[3];
+        String endereco = dados[4];
+        String rg = dados[5];
+
+        // Identificando a função
+        if (crm != null) { f = new Medico(cpf, nome, crm); } 
+        else if (funcao.equals("Enfermeiro")) { f = new Enfermeiro(cpf, nome); } 
+        else { f = new Fisioterapeuta(cpf, nome); }
+
+        // Adicionando os outros atributos
+        if (endereco != null) { f.setEndereco(endereco); }
+        if (rg != null) { f.setRg(rg); }
+
+        // Adicionando o funcionário
+        this.hospital.addFuncionario(f);
+      }
+
+      arqReader.close();
+      arq.close();
+
+    } catch (FileNotFoundException e) {
+      System.out.println("O arquivo de funcionarios não foi encontrado. Vamos criá-lo.");
+      try {
+        arqPath.createNewFile();
+      } catch (IOException e1) {
+        encerraPrograma();
+      }
+      System.out.println("A lista de funcionários no total é de 0.");
+    } catch (IOException e) {
+      encerraPrograma();
+    }
 
   }
 
