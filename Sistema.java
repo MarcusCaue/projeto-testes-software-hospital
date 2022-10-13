@@ -163,7 +163,6 @@ public class Sistema implements FuncionalidadesIF {
     }
   }
 
-  // Função CONCLUÍDA
   /**
    * Função para abrir o BD e cadastrar um Hospital
    * @param arqPath = variável do tipo File que conterá o caminho de acesso ao arquivo do BD
@@ -185,7 +184,6 @@ public class Sistema implements FuncionalidadesIF {
     }
   }
 
-  // Função CONCLUÍDA
   /**
    * Encerra o programa quando uma IOException é acionada
    */
@@ -195,7 +193,6 @@ public class Sistema implements FuncionalidadesIF {
     System.exit(0);
   }
 
-  // Função CONCLUÍDA
   /**
    * Inicializa o Hospital acessando o BD
    * Casos de Teste: 
@@ -271,7 +268,6 @@ public class Sistema implements FuncionalidadesIF {
     }
   }
 
-  // Função CONCLUÍDA
   /**
    * Busca no BD os dados dos pacientes cadastrados
    * Casos de Teste:
@@ -335,7 +331,6 @@ public class Sistema implements FuncionalidadesIF {
     }
   }
 
-  // Função CONCLUÍDA
   /**
    * Busca no BD os dados dos funcionários cadastrados
    * Casos de Teste:
