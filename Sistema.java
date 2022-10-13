@@ -50,7 +50,7 @@ public class Sistema implements FuncionalidadesIF {
 
   }
 
-  public void escreverPacientes(ArrayList<Paciente> pacientes, PrintWriter arq) {
+  private void escreverPacientes(ArrayList<Paciente> pacientes, PrintWriter arq) {
     for (Paciente p : pacientes) {
       String line = String.format("%s;%s;%s;",
       p.getCpf(), p.getNome(), p.getEndereco());
@@ -127,7 +127,7 @@ public class Sistema implements FuncionalidadesIF {
 
   }
   
-  public void escreverFuncionarios(ArrayList<Funcionario> funcionarios, PrintWriter arq) {
+  private void escreverFuncionarios(ArrayList<Funcionario> funcionarios, PrintWriter arq) {
     for (Funcionario f : funcionarios) {
       
       String funcao = f.getClass().getSimpleName();
@@ -163,7 +163,6 @@ public class Sistema implements FuncionalidadesIF {
     }
   }
 
-
   // Função CONCLUÍDA
   /**
    * Função para abrir o BD e cadastrar um Hospital
@@ -171,7 +170,7 @@ public class Sistema implements FuncionalidadesIF {
    * @param entrada = um Scanner que será utilizado para fazer a leitura do nome do Hospital
    * @return String = o nome do Hospital quando funciona sem erros e null quando ocorre a IOException
    */
-  public String cadastraHospital(File arqPath, Scanner entrada) {
+  private String cadastraHospital(File arqPath, Scanner entrada) {
     System.out.print("Parece que o Hospital ainda não foi cadastrado. \nDigite um nome para ele: ");
     String nomeHospital = entrada.nextLine();
 
@@ -190,7 +189,7 @@ public class Sistema implements FuncionalidadesIF {
   /**
    * Encerra o programa quando uma IOException é acionada
    */
-  public void encerraPrograma() {
+  private void encerraPrograma() {
     System.out.println("Houve algum problema ao tentar acessar o arquivo. Tente novamente mais tarde.");
     System.out.println("Sistema encerrado.");
     System.exit(0);
@@ -205,7 +204,7 @@ public class Sistema implements FuncionalidadesIF {
    *     3 - Arquivo Inexistente;
    *     4 - Tratamento do IOException;   
    */
-  public void inicializaHospital() {
+  private void inicializaHospital() {
     Scanner entrada = new Scanner(System.in);
     String nomeHospital;
     
@@ -279,7 +278,7 @@ public class Sistema implements FuncionalidadesIF {
    *  1 - Arquivo existente com e sem conteúdo (funciona da mesma forma).
    *  2 - Arquivo inexistente.
    */
-  public void getPacientesOnBd() {
+  private void getPacientesOnBd() {
     File arqPath = new File("./database/pacientes.txt");
 
     try {
@@ -343,7 +342,7 @@ public class Sistema implements FuncionalidadesIF {
    *  1 - Arquivo existente com e sem conteúdo (funciona da mesma forma).
    *  2 - Arquivo inexistente.
    */
-  public void getFuncionariosOnBd() {
+  private void getFuncionariosOnBd() {
     File arqPath = new File("./database/funcionarios.txt");
 
     try {
