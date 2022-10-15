@@ -1,10 +1,7 @@
 package interfaces;
 import java.util.*;
 
-import classes.Enfermeiro;
-import classes.Funcionario;
-import classes.Medico;
-import classes.Paciente;
+import classes.*;
 public interface FuncionalidadesIF {
 
   /**
@@ -40,7 +37,7 @@ public interface FuncionalidadesIF {
   public void cadastraEnfermeiro(String novoCpf, String novoNome);
   public Enfermeiro localizaEnfermeiro(String cpf);
   public void cadastraFisioterapeuta(String cpf, String nome);
-  public Enfermeiro localizaFisioterapeuta(String cpf);
+  public Fisioterapeuta localizaFisioterapeuta(String cpf);
   
   public int getNumeroDePacientesInternados();
   public int getNumeroDeFuncionarios();
@@ -50,7 +47,4 @@ public interface FuncionalidadesIF {
   public void atendimento(String cpfFuncionario, String cpfPaciente);
   public double atendimentoMedico(String crmMedico, String cpfPaciente);
 
-  
-  
-  
 }
