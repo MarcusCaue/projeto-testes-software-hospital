@@ -4,3 +4,4 @@ Medico;123.456.789-10;Lidia Santiago;1234567;Rua Vila Maia;5.665.334.897
 Fisioterapeuta;332.443.545-12;Miguel Ryan;null;Rua Aleatoria;2.443.443.112
 Enfermeiro;332.443.551-32;Paula Miranda;null;null;2.565.788.197
 Medico;543.237.866-12;Maria Luiza Magna;55442331;null;null;
+Medico;434.555.767-12;Lucas Gabriel;8766212;null;null;

@@ -97,17 +97,9 @@ public class Sistema implements FuncionalidadesIF {
     // Obtendo a lista de funcionários cadastrados no Hospital
     ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
 
-    Fisioterapeuta fs = new Fisioterapeuta("332.443.545-12", "Miguel Ryan");
-    fs.setEndereco("Rua Aleatoria"); fs.setRg("2.443.443.112");
+    Medico m1 = new Medico("434.555.767-12", "Lucas Gabriel", "8766212");
 
-    Enfermeiro ef = new Enfermeiro("332.443.551-32", "Paula Miranda");
-    ef.setRg("2.565.788.197");
-
-    Medico m = new Medico("543.237.866-12", "Maria Luiza Magna", "55442331");
-
-    funcionarios.add(fs);
-    funcionarios.add(ef);
-    funcionarios.add(m);
+    funcionarios.add(m1);
 
     try {
       FileWriter arqWriter = new FileWriter(arqPath);
