@@ -1,5 +1,3 @@
-import classes.*;
-import interfaces.*;
 import java.util.*;
 
 class Main {

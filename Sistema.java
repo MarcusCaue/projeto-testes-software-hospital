@@ -392,7 +392,26 @@ public class Sistema implements FuncionalidadesIF {
   public void alteraEndereco(String cpf, String novoEndereco){}
 
   //verifica o valor dos atributos da pessoa que está cadastrada no sistema com esse cpf
-  public String confirmaNome(String cpf, String nome){return null;}
+  public String confirmaNome(String cpf, String nome){
+    
+    ArrayList<Paciente> pacientes = this.hospital.getPacientes();
+    ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
+
+    for(int paciente = 0; paciente < pacientes.size();paciente++){
+      if(pacientes.get(paciente).getCpf().equals(cpf) && pacientes.get(paciente).getNome().equals(nome)){
+        return "O cpf " + cpf + " Pertence ao usuário " + nome;
+      }
+    }
+
+    for(int funcionario = 0; funcionario < funcionarios.size();funcionario++){
+      if(funcionarios.get(funcionario).getCpf().equals(cpf) && funcionarios.get(funcionario).getNome().equals(nome)){
+        return "O cpf " + cpf + " Pertence ao usuário " + nome;
+      }
+    }
+
+    return "O cpf não pertence a nenhum usuário";
+  
+  }
   public String confirmaEndereco(String cpf, String endereco){return null;}
 
   public void internaNaUti(Paciente p){}
@@ -401,13 +420,38 @@ public class Sistema implements FuncionalidadesIF {
   public void alteraAltura(Paciente p, int altura){}
   public void altaPeso(Paciente p, double peso){}
 
-  public void cadastraMedico(String cpf, String nome, String crm){}
+  public void cadastraMedico(String cpf, String nome, String crm){
+    ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
+    Medico medico = new Medico(cpf, nome, crm);
+    funcionarios.add(medico);
+  }
+
   public Medico localizaMedico(String crm){return null;}
   public void cadastraEnfermeiro(String novoCpf, String novoNome){}
   public Enfermeiro localizaEnfermeiro(String cpf){return null;}
   public void cadastraFisioterapeuta(String cpf, String nome){}
-  public Enfermeiro localizaFisioterapeuta(String cpf){return null;}
-  public ArrayList<Paciente> listagemDePacientesInternados(){return null;}
+  public Fisioterapeuta localizaFisioterapeuta(String cpf){return null;}
+  public ArrayList<Paciente> listagemDePacientesInternados(){
+    // Cria-se uma lista que vai armazenar os objetos dos pacientes internados
+    ArrayList<Paciente> pacientesInternados = new ArrayList<Paciente>();
+
+    // Pacientes cadastrados no hospital
+    ArrayList<Paciente> pacientes = this.hospital.getPacientes();
+
+    // Buscando pacientes internados
+    for (Paciente p : pacientes) {
+      boolean internado = p.estaNaUti();
+
+      // Se estiver na Uti -> está internado -> será adicionado na lista "pacientesInternados"
+      if (internado == true) {
+        pacientesInternados.add(p);
+      }
+
+    }
+
+    // Retorna essa lista
+    return pacientesInternados;
+  }
   public ArrayList<Funcionario> listagemDeFuncionarios(){return null;}
   
   public int getNumeroDePacientesInternados(){return 0;}
