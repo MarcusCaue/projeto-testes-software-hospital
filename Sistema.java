@@ -388,8 +388,83 @@ public class Sistema implements FuncionalidadesIF {
   public Paciente localizaPaciente(String cpf){return null;}
 
   //altera o valor dos parametros da pessoa que é cadastrada no sistema com o cpf passado como parametro
-  public void alteraNome(String cpf, String novoNome){}
-  public void alteraEndereco(String cpf, String novoEndereco){}
+  public void alteraNome(String cpf, String novoNome){
+    Pessoa p = null;
+    ArrayList<Paciente> pacientes = this.hospital.getPacientes();
+    ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
+
+    // Buscando por Pacientes com esse CPF
+    for (Paciente paciente: pacientes){
+      String cpfPacienteNaLista = paciente.getCpf();
+
+      if (cpfPacienteNaLista.equals(cpf)){
+        p = paciente;
+        break;
+      }
+    }  
+
+    // Buscando por Funcionários com esse CPF
+    if (p == null) {
+      for (Funcionario funcionario: funcionarios){
+        String cpfFuncNaLista = funcionario.getCpf();
+
+        if (cpfFuncNaLista.equals(cpf)){
+          p = funcionario;
+          break;
+        }
+      }
+    }
+
+    // Se p == null, quer dizer que ele encontrou ninguém com esse CPF
+    if (p == null) {
+      System.out.println("Não encontramos ninguém cadastrado com esse CPF, tente novamente mais tarde.");
+    }
+    // Do contrário, altera o nome
+    else {
+      p.setNome(novoNome);
+      System.out.println("Nome modificado com sucesso!");
+    }
+
+  }
+
+  public void alteraEndereco(String cpf, String novoEndereco){
+    Pessoa p = null;
+    ArrayList<Paciente> pacientes = this.hospital.getPacientes();
+    ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
+
+    // Buscando por Pacientes com esse CPF
+    for (Paciente paciente: pacientes){
+      String cpfPacienteNaLista = paciente.getCpf();
+
+      if (cpfPacienteNaLista.equals(cpf)){
+        p = paciente;
+        break;
+      }
+    }  
+
+    // Buscando por Funcionários com esse CPF
+    if (p == null) {
+      for (Funcionario funcionario: funcionarios){
+        String cpfFuncNaLista = funcionario.getCpf();
+
+        if (cpfFuncNaLista.equals(cpf)){
+          p = funcionario;
+          break;
+        }
+      }
+    }
+
+    // Se p == null, quer dizer que ele encontrou ninguém com esse CPF
+    if (p == null) {
+      System.out.println("Não encontramos ninguém cadastrado com esse CPF, tente novamente mais tarde.");
+    }
+    // Do contrário, altera o endereço
+    else {
+      p.setEndereco(novoEndereco);
+      System.out.println("Endereço modificado com sucesso!");
+    }
+
+  }
 
   //verifica o valor dos atributos da pessoa que está cadastrada no sistema com esse cpf
   public String confirmaNome(String cpf, String nome){
@@ -417,8 +492,14 @@ public class Sistema implements FuncionalidadesIF {
   public void internaNaUti(Paciente p){}
   public void altaDaUti(Paciente p){}
 
-  public void alteraAltura(Paciente p, int altura){}
-  public void altaPeso(Paciente p, double peso){}
+  public void alteraAltura(Paciente p, int altura){
+    p.setAltura(altura);
+    System.out.println("Altura modificada com sucesso!");
+  }
+  public void altaPeso(Paciente p, double peso){
+    p.setPeso(peso);
+    System.out.println("Peso modificado com sucesso!");
+  }
 
   public void cadastraMedico(String cpf, String nome, String crm){
     ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
@@ -452,10 +533,25 @@ public class Sistema implements FuncionalidadesIF {
     // Retorna essa lista
     return pacientesInternados;
   }
-  public ArrayList<Funcionario> listagemDeFuncionarios(){return null;}
+  public ArrayList<Funcionario> listagemDeFuncionarios(){
+    ArrayList<Funcionario> nFuncionarios = new ArrayList<Funcionario>();
+    ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
+
+    for (Funcionario f : funcionarios){
+        nFuncionarios.add(f);
+    }
+
+    return nFuncionarios;
+  }
   
-  public int getNumeroDePacientesInternados(){return 0;}
-  public int getNumeroDeFuncionarios(){return 0;}
+  public int getNumeroDePacientesInternados(){
+    ArrayList<Paciente> pacientesInternados = listagemDePacientesInternados();
+    return pacientesInternados.size();
+  }
+  public int getNumeroDeFuncionarios(){
+    ArrayList<Funcionario> nFuncionarios = listagemDeFuncionarios();
+    return nFuncionarios.size();
+  }
   public void atendimento(String cpfFuncionario, String cpfPaciente){}
   public double atendimentoMedico(String crmMedico, String cpfPaciente){return 0;}
 
