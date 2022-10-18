@@ -25,7 +25,7 @@ class Main {
       do {
         System.out.print("Digite a sua escolha: ");
         acao = s.nextInt();
-      } while (acao < 1 || acao > 19); s.nextLine();
+      } while (acao < 1 || acao > 19);
 
       // Pausando o programa por 1 segundo
       Thread.sleep(1000);
@@ -37,7 +37,7 @@ class Main {
         System.out.println(enfeite);
 
         System.out.print("Informe o CPF da pessoa que se deseja alterar o nome: ");
-        String cpf = s.nextLine();
+        String cpf = s.nextLine(); s.nextLine();
 
         // Validando o CPF e o NOME
         if (sistemaHospital.validaCPF(cpf)) {
@@ -57,7 +57,7 @@ class Main {
       // Alterar Endereços
       else if (acao == 2) {
         System.out.print("Informe o CPF da pessoa que se deseja alterar o endereço: ");
-        String cpf = s.nextLine();
+        String cpf = s.nextLine(); s.nextLine();
         System.out.print("Informe o novo endereço: ");
         String novoEndereco = s.nextLine();
         
@@ -67,7 +67,7 @@ class Main {
       // Atualizar altura do paciente
       else if (acao == 3) {
         System.out.print("Informe o CPF do paciente que se deseja alterar a altura: ");
-        String cpf = s.nextLine();
+        String cpf = s.nextLine(); s.nextLine();
         System.out.print("Informe a altura desse paciente: ");
         int altura = s.nextInt();
         
@@ -90,7 +90,7 @@ class Main {
       // Atualizar peso do paciente
       else if (acao == 4) {
         System.out.print("Informe o CPF do paciente que se deseja alterar o peso: ");
-        String cpf = s.nextLine();
+        String cpf = s.nextLine(); s.nextLine();
         System.out.print("Informe o peso desse paciente: ");
         double peso = s.nextDouble();
           
@@ -267,9 +267,9 @@ class Main {
       }
       // Confimar Nome
       else if (acao == 9) {
-        System.out.print("CPF da pessoa: ");
-        String cpf = s.nextLine();
-        System.out.println("Nome da pessoa: ");
+        System.out.print("CPF da pessoa: "); s.nextLine();
+        String cpf = s.nextLine(); 
+        System.out.print("Nome da pessoa: ");
         String nome = s.nextLine();
 
         if (sistemaHospital.validaCPF(cpf) && sistemaHospital.validaNome(nome)) {
@@ -282,7 +282,7 @@ class Main {
       }
       // Alta da UTI
       else if (acao == 10) {
-        System.out.print("Digite o CPF do Paciente: ");
+        System.out.print("Digite o CPF do Paciente: "); s.nextLine();
         String cpf = s.nextLine();
         boolean cpfValido = sistemaHospital.validaCPF(cpf);
 

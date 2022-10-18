@@ -488,16 +488,21 @@ public class Sistema implements FuncionalidadesIF {
   
   public void altaDaUti(Paciente p){
     ArrayList<Paciente> pacientes = this.hospital.getPacientes();
+    boolean encontrouInternado = false;
 
     for (int internado = 0; internado < pacientes.size(); internado++) {
       if (pacientes.get(internado).equals(p) && pacientes.get(internado).estaNaUti() == true) {
         pacientes.get(internado).setEstaNaUti(false);
         System.out.printf("Paciente '%s' recebeu alta!\n", p.getNome());
+        encontrouInternado = true;
         break;
       }
     }
 
-    System.out.println("Não temos pacientes internados no momento.");
+    if (encontrouInternado == false) {
+      System.out.println("Não temos pacientes internados no momento.");
+    }
+
   }
 
   public void alteraAltura(Paciente p, int altura){

@@ -9,11 +9,6 @@ public class MainTeste {
         Sistema sistemaHospital = new Sistema();
         sistemaHospital.inicializaSistema();
 
-        System.out.print("Digite o RG (se necessário): ");
-        String rg = s.nextLine();
-
-        System.out.println(sistemaHospital.validaRG(rg));
-
 
 
         
