@@ -142,7 +142,7 @@ public class Sistema implements FuncionalidadesIF {
       }
 
       if (rg.equals("")) {
-        line += "null;";
+        line += "null";
       } else {
         line += rg;
       }
