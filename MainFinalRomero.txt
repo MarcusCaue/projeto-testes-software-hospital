@@ -1,0 +1,216 @@
+import java.util.*;
+import classes.*;
+
+class Main {
+  public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+
+    // Inicializando o Sistema do Hospital
+    Sistema sistemaHospital = new Sistema();
+    sistemaHospital.inicializaSistema(); 
+
+    String enfeite = "\n=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=\n";
+
+    while (true) {
+      // Menu
+      System.out.println(enfeite);
+      System.out.println("Bem vindo ao nosso sistema hospitalar. \nExperimente nossas funcionalidades!");
+      System.out.println(enfeite);
+      System.out.println("O que deseja fazer hoje?\n");
+      System.out.println("1 - Alterar nomes\n2 - Alterar endereços\n3 - Atualizar altura do paciente\n4 - Atualizar peso do paciente\n5 - Listar número de pacientes internados \n6 - Listar número de funcionários\n7-Cadastrar funcionário\n8- Localizar funcionário Fechar o programa");
+      
+      // Validando a escolha do usuário
+      int acao;
+      do {
+        System.out.print("Digite a sua escolha: ");
+        acao = s.nextInt();
+      } while (acao < 1 || acao > 9);
+      
+      // Alterar Nomes
+      if (acao == 1) {
+        System.out.print("Informe o CPF da pessoa que se deseja alterar o nome: ");
+        String cpf = s.nextLine();
+        System.out.print("Informe o novo nome: ");
+        String novoNome = s.nextLine();
+        
+        sistemaHospital.alteraNome(cpf, novoNome);        
+      } 
+      // Alterar Endereços
+      else if (acao == 2) {
+        System.out.print("Informe o CPF da pessoa que se deseja alterar o endereço: ");
+        String cpf = s.nextLine();
+        System.out.print("Informe o novo endereço: ");
+        String novoEndereco = s.nextLine();
+        
+        sistemaHospital.alteraEndereco(cpf, novoEndereco);
+      }
+      // Atualizar altura do paciente
+      else if (acao == 3) {
+        System.out.print("Informe o CPF do paciente que se deseja alterar a altura: ");
+        String cpf = s.nextLine();
+        System.out.print("Informe a altura desse paciente: ");
+        int altura = s.nextInt();
+        
+        // Obtendo um objeto de paciente dado o seu CPF
+        Paciente p = null;
+        ArrayList<Paciente> pacientes = sistemaHospital.hospital.getPacientes();
+
+        for (Paciente paciente: pacientes){
+          String cpfPacienteNaLista = paciente.getCpf();
+
+          if (cpfPacienteNaLista.equals(cpf)){
+            p = paciente;
+            break;
+          }       
+        }
+
+        sistemaHospital.alteraAltura(p, altura);  
+      }
+      // Atualizar peso do paciente
+      else if (acao == 4) {
+        System.out.print("Informe o CPF do paciente que se deseja alterar o peso: ");
+        String cpf = s.nextLine();
+        System.out.print("Informe o peso desse paciente: ");
+        double peso = s.nextDouble();
+          
+        // Obtendo um objeto de paciente dado o seu CPF
+        Paciente p = null;
+        ArrayList<Paciente> pacientes = sistemaHospital.hospital.getPacientes();
+
+        for (Paciente paciente: pacientes){
+          String cpfPacienteNaLista = paciente.getCpf();
+
+          if (cpfPacienteNaLista.equals(cpf)){
+            p = paciente;
+          }       
+        }
+
+        sistemaHospital.altaPeso(p, peso);  
+      }    
+      // Listar número de pacientes internados
+      else if (acao == 5) {
+        int numPacientesInternados = sistemaHospital.getNumeroDePacientesInternados();
+        System.out.println("No momento há " + numPacientesInternados + " pacientes internados.");
+      }
+      // Listar número de funcionários
+      else if (acao == 6) {
+        System.out.println("a");
+        int numFuncionarios = sistemaHospital.getNumeroDeFuncionarios();
+        System.out.println("No momento há " + numFuncionarios + " Funcionários.");
+      } 
+      else if (acao == 7) {
+        System.out.println("Você tem as seguintes opções de funcionário para cadastrar:\n1 - Médico\n2 - Enfermeiro\n3- Fisioterapeuta");
+        System.out.println("\nDigite o número da opção que você deseja: ");
+        int resposta = s.nextInt();
+
+        if(resposta == 1){
+
+          // Recebe os dados//
+
+          Scanner dados = new Scanner(System.in);
+          System.out.println("Digite o CPF do médico que você quer cadastrar: (XXXXXXXXXXX");
+          String ocpf = dados.nextLine();
+          System.out.println("Digite o Nome do médico que você quer cadastrar: ");
+          String onome = dados.nextLine();
+          System.out.println("\nDigite o CRM do médico que você quer cadastrar: (XXXXXX)");
+          String ocrm = dados.nextLine();
+
+
+          // Valida os dados e usa o comando para enviá-los ao banco//
+          if(sistemaHospital.validaCPF(ocpf)&&sistemaHospital.validaNome(onome) && sistemaHospital.validaCRM(ocrm)){
+            sistemaHospital.cadastraMedico(ocpf, onome, ocrm);   
+            System.out.println("Cadastrado!");
+          }       
+          else{
+            System.out.println("Você digitou algum dos seus dados no formato inválido... tente novamente!");
+          }
+        }
+        // Recebe os dados//
+        else if(resposta == 2){
+          Scanner dados = new Scanner(System.in);
+          System.out.println("Digite o CPF do enfermeiro que você quer cadastrar: (XXXXXXXXXXX");
+          String ocpf = dados.nextLine();
+          System.out.println("Digite o Nome do enfermeiro que você quer cadastrar: ");
+          String onome = dados.nextLine();
+          
+
+          // Valida os dados e usa o comando para enviá-los ao banco//
+          if(sistemaHospital.validaCPF(ocpf)&&sistemaHospital.validaNome(onome)){
+            sistemaHospital.cadastraEnfermeiro(ocpf, onome);   
+            System.out.println("Cadastrado!");
+          }       
+          else{
+            System.out.println("Você digitou algum dos seus dados no formato inválido... tente novamente!");
+          }
+
+        }
+        // Recebe os dados//
+        else if(resposta == 3){
+          Scanner dados = new Scanner(System.in);
+          System.out.println("Digite o CPF do  fisioterapeuta que você quer cadastrar: (XXXXXXXXXXX");
+          String ocpf = dados.nextLine();
+          System.out.println("Digite o Nome do fisioterapeuta que você quer cadastrar: ");
+          String onome = dados.nextLine();
+
+          // Valida os dados e usa o comando para enviá-los ao banco//
+          if(sistemaHospital.validaCPF(ocpf)&&sistemaHospital.validaNome(onome)){
+            sistemaHospital.cadastraFisioterapeuta(ocpf, onome);   
+            System.out.println("Cadastrado!");
+          }       
+          else{
+            System.out.println("Você digitou algum dos seus dados no formato inválido... tente novamente!");
+          }
+
+        }
+        else{
+          System.out.println("Opção inválida... tente novamente!");
+        }
+      }
+      else if(acao == 8){
+        Scanner dados = new Scanner(System.in);
+        System.out.println("Indique o tipo de funcionário que você deseja localizar:\n 1 - Médico\n 2 - Enfermeiro\n 3 - Fisioterapeuta");
+        
+        int resposta = dados.nextInt();
+
+        if(resposta == 1){
+          System.out.println("Digite o CRM do Médico:\n");
+          String crm = dados.nextLine();
+
+          Medico medicoatual = sistemaHospital.localizaMedico(crm);
+
+          System.out.println("Dados do médico:\nNome: " + medicoatual.getNome() + "\nCPF: " + medicoatual.getCpf() );
+
+          }
+          else if(resposta == 2){
+            System.out.println("Digite o CPF do Enfermeiro\n");
+            String cpf = dados.nextLine();
+
+            Enfermeiro enfermeiroatual = sistemaHospital.localizaEnfermeiro(cpf);
+
+          System.out.println("Dados do enfermeiro:\nNome: " + enfermeiroatual.getNome() + "\nCPF: " + enfermeiroatual.getCpf() );
+          }
+          else if(resposta == 3){
+            System.out.println("Digite o CPF do Fisioterapeuta");
+            String cpf = dados.nextLine();
+
+            Fisioterapeuta fisioterapeutaatual = sistemaHospital.localizaFisioterapeuta(cpf);
+
+          System.out.println("Dados do fisioterapeuta:\nNome: " + fisioterapeutaatual.getNome() + "\nCPF: " + fisioterapeutaatual.getCpf() );
+          }
+          else{
+            System.out.println("Opção inválida...");
+          }
+        }   
+      // Encerrando o Programa
+      else {
+        System.out.println("Sistema Encerrado!");
+        break;
+      }
+    }
+
+    // Finalizando o Sistema do Hospital
+    sistemaHospital.finalizaSistema();
+    System.out.println("\nSistema finalizado com sucesso! Obrigado e volte sempre!");
+    System.out.println(enfeite);
+  }
+}

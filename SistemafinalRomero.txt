@@ -2,6 +2,8 @@ import java.util.*;
 import classes.*;
 import java.io.*;
 import interfaces.FuncionalidadesIF;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Sistema implements FuncionalidadesIF {
 
@@ -96,6 +98,10 @@ public class Sistema implements FuncionalidadesIF {
 
     // Obtendo a lista de funcionários cadastrados no Hospital
     ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
+
+    Medico m1 = new Medico("434.555.767-12", "Lucas Gabriel", "8766212");
+
+    funcionarios.add(m1);
 
     try {
       FileWriter arqWriter = new FileWriter(arqPath);
@@ -218,6 +224,7 @@ public class Sistema implements FuncionalidadesIF {
 
       // Do contrário, instancia um objeto do tipo Hospital
       this.hospital = new Hospital(nomeHospital);
+      System.out.printf("O sistema do Hospital '%s' está funcionário com sucesso!\n", nomeHospital);
 
       // Fechando os arquivos abertos
       arq.close();
@@ -240,6 +247,8 @@ public class Sistema implements FuncionalidadesIF {
 
         // Do contrário, instancia um objeto do tipo Hospital
         this.hospital = new Hospital(nomeHospital);
+        System.out.printf("O sistema do Hospital '%s' está funcionário com sucesso!\n", nomeHospital);
+
       } 
       // Caso algum erro do tipo IO ocorra, encerra o programa.
       catch (IOException e1) {
@@ -378,7 +387,6 @@ public class Sistema implements FuncionalidadesIF {
 
   //Funcionalidade que cadastra o paciente no sistema 
   public void cadastraPaciente(String novoCpf, String novoNome, String novoEndereco){}
-
   public Paciente localizaPaciente(String cpf){return null;}
 
   //altera o valor dos parametros da pessoa que é cadastrada no sistema com o cpf passado como parametro
@@ -485,7 +493,6 @@ public class Sistema implements FuncionalidadesIF {
   public String confirmaEndereco(String cpf, String endereco){return null;}
 
   public void internaNaUti(Paciente p){}
-  
   public void altaDaUti(Paciente p){
     ArrayList<Paciente> pacientes = this.hospital.getPacientes();
 
@@ -496,8 +503,6 @@ public class Sistema implements FuncionalidadesIF {
         break;
       }
     }
-
-    System.out.println("Não temos pacientes internados no momento.");
   }
 
   public void alteraAltura(Paciente p, int altura){
@@ -514,6 +519,7 @@ public class Sistema implements FuncionalidadesIF {
     ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
     Medico medico = new Medico(cpf, nome, crm);
     funcionarios.add(medico);
+    
   }
 
   public Medico localizaMedico(String crm){
@@ -590,7 +596,6 @@ public class Sistema implements FuncionalidadesIF {
     // Retorna essa lista
     return pacientesInternados;
   }
-  
   public ArrayList<Funcionario> listagemDeFuncionarios(){
     ArrayList<Funcionario> nFuncionarios = new ArrayList<Funcionario>();
     ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
@@ -613,12 +618,13 @@ public class Sistema implements FuncionalidadesIF {
   }
   
   public void atendimento(String cpfFuncionario, String cpfPaciente){}
-  
   public double atendimentoMedico(String crmMedico, String cpfPaciente){return 0;}
 
   public boolean validaCPF(String cpf){
-    String regexcpf = "[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}";
-    boolean matchFound = cpf.matches(regexcpf);
+    String regexcpf = "[0-9]{11}";
+    Pattern patterncpf = Pattern.compile(regexcpf);
+    Matcher matchercpf = patterncpf.matcher(cpf);
+    boolean matchFound = matchercpf.find();
     if(matchFound == false){
       System.out.println("CPF inválido...");
       return false;
@@ -627,8 +633,7 @@ public class Sistema implements FuncionalidadesIF {
   }
 
   public boolean validaNome(String nome){
-    nome = nome.trim();
-    if(nome.equals("")){
+    if(nome.getClass().getSimpleName() != "String" && nome == ""){
       System.out.println("Nome inválido... tente novamente");
       return false;
     }
@@ -636,8 +641,10 @@ public class Sistema implements FuncionalidadesIF {
   }
 
   public boolean validaCRM(String crm){
-    String regexCrm = "[0-9]{6}";
-    boolean matchFound = crm.matches(regexCrm);
+    String regexcrm = "[0-9]{6}";
+    Pattern patterncrm = Pattern.compile(regexcrm);
+    Matcher matchercrm = patterncrm.matcher(crm);
+    boolean matchFound = matchercrm.find();
 
     if(matchFound == false){
       System.out.println("CRM inválido...");
@@ -645,5 +652,4 @@ public class Sistema implements FuncionalidadesIF {
     }
     return true;
   }
-
 } 
