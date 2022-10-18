@@ -1,0 +1,7 @@
+validaCPF()
+validaNome()
+validaCRM()
+validaRG()
+cadastraMedico()
+cadastraEnfermeiro()
+cadastraFisioterapeuta()

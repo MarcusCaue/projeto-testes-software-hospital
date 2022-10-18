@@ -620,7 +620,15 @@ public class Sistema implements FuncionalidadesIF {
     String regexcpf = "[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}";
     boolean matchFound = cpf.matches(regexcpf);
     if(matchFound == false){
-      System.out.println("CPF inválido...");
+      return false;
+    }
+    return true;
+  }
+
+  public boolean validaRG(String rg){
+    String regexRg = "()|([0-9]{2}.[0-9]{3}.[0-9]{3}-[0-9]{2})";
+    boolean matchFound = rg.matches(regexRg);
+    if(matchFound == false){
       return false;
     }
     return true;
@@ -629,7 +637,6 @@ public class Sistema implements FuncionalidadesIF {
   public boolean validaNome(String nome){
     nome = nome.trim();
     if(nome.equals("")){
-      System.out.println("Nome inválido... tente novamente");
       return false;
     }
     return true;
@@ -640,7 +647,6 @@ public class Sistema implements FuncionalidadesIF {
     boolean matchFound = crm.matches(regexCrm);
 
     if(matchFound == false){
-      System.out.println("CRM inválido...");
       return false;
     }
     return true;
