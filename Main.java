@@ -1,9 +1,11 @@
 import java.util.*;
 import classes.*;
+import java.lang.Thread;
 
 class Main {
-  public static void main(String[] args) {
+  public static void main(String[] args) throws InterruptedException {
     Scanner s = new Scanner(System.in);
+
 
     // System.out.print("Digite seu nome: ");
     // String nome = s.nextLine();
@@ -11,7 +13,6 @@ class Main {
     // Inicializando o Sistema do Hospital
     Sistema sistemaHospital = new Sistema();
     sistemaHospital.inicializaSistema(); 
-
 
     String enfeite = "\n=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=\n";
 
@@ -21,15 +22,18 @@ class Main {
       System.out.println("Bem vindo ao nosso sistema hospitalar. \nExperimente nossas funcionalidades!");
       System.out.println(enfeite);
       System.out.println("O que deseja fazer hoje?\n");
-      System.out.println("1 - Alterar Nomes\n2 - Alterar Endereços\n3 - Atualizar Altura do Paciente\n4 - Atualizar Peso do Paciente\n5 - Listar Número de Pacientes internados \n6 - Listar Número de Funcionários\n7- Cadastrar Funcionário\n8 - Localizar Funcionários\n9 - Confirmar Nome\n10 - Soltar uma Alta da UTI\n11 - Fechar o Programa");
+      System.out.println("1  - Alterar Nomes\n2  - Alterar Endereços\n3  - Atualizar Altura do Paciente\n4  - Atualizar Peso do Paciente\n5  - Listar Número de Pacientes internados \n6  - Listar Número de Funcionários\n7  - Cadastrar Funcionário\n8  - Localizar Funcionários\n9  - Confirmar Nome\n10 - Soltar uma Alta da UTI\n11 - Cadastrar Paciente\n12 - Localizar Paciente\n13 - Listar Pacientes Internados\n14 - Listar Funcionários\n15 - Atendimento Normal\n16 - Atendimento com Médico\n17 - Confirmar Endereço\n18 - Internar Paciente\n19 - Fechar o Programa");
       
       // Validando a escolha do usuário
       int acao;
       do {
         System.out.print("Digite a sua escolha: ");
         acao = s.nextInt();
-      } while (acao < 1 || acao > 7);
-      
+      } while (acao < 1 || acao > 19);
+
+      // Pausando o programa por 1 segundo
+      Thread.sleep(1000);
+
       // Alterar Nomes
       if (acao == 1) {
         System.out.println(enfeite);
@@ -52,6 +56,7 @@ class Main {
         } else {
           System.out.println("CPF inválido. O nome não será modificado.");
         }
+        Thread.sleep(1000);    
       } 
       // Alterar Endereços
       else if (acao == 2) {
@@ -61,6 +66,7 @@ class Main {
         String novoEndereco = s.nextLine();
         
         sistemaHospital.alteraEndereco(cpf, novoEndereco);
+        Thread.sleep(1000);
       }
       // Atualizar altura do paciente
       else if (acao == 3) {
@@ -82,7 +88,8 @@ class Main {
           }       
         }
 
-        sistemaHospital.alteraAltura(p, altura);  
+        sistemaHospital.alteraAltura(p, altura);
+        Thread.sleep(1000);  
       }
       // Atualizar peso do paciente
       else if (acao == 4) {
@@ -104,21 +111,24 @@ class Main {
         }
 
         sistemaHospital.altaPeso(p, peso);  
+        Thread.sleep(1000);
       }    
       // Listar número de pacientes internados
       else if (acao == 5) {
         int numPacientesInternados = sistemaHospital.getNumeroDePacientesInternados();
         System.out.println("No momento há " + numPacientesInternados + " pacientes internados.");
+        Thread.sleep(1000);
       }
       // Listar número de funcionários
       else if (acao == 6) {
         int numFuncionarios = sistemaHospital.getNumeroDeFuncionarios();
         System.out.println("No momento há " + numFuncionarios + " Funcionários.");
+        Thread.sleep(1000);
       } 
       // Cadastrar Funcionário
       else if (acao == 7) {
         System.out.println("Você tem as seguintes opções de funcionário para cadastrar:\n1 - Médico\n2 - Enfermeiro\n3- Fisioterapeuta");
-        System.out.println("\nDigite o número da opção que você deseja: ");
+        System.out.print("\nDigite o número da opção que você deseja: ");
         int resposta = s.nextInt(); s.nextLine();
 
         if(resposta == 1) {
@@ -174,6 +184,7 @@ class Main {
         else {
           System.out.println("Opção inválida... tente novamente!");
         }
+        Thread.sleep(1000);
       }
       // Localizar Funcionário
       else if (acao == 8) {
@@ -219,6 +230,7 @@ class Main {
         else{
           System.out.println("Opção inválida... Tente novamente!");
         }
+        Thread.sleep(1000);
       }
       // Confimar Nome
       else if (acao == 9) {
@@ -233,6 +245,7 @@ class Main {
         } else {
           System.out.println("Você digitou pelo menos um dos dados de forma inválida. Tente novamente");
         }
+        Thread.sleep(1000);
       }
       // Alta da UTI
       else if (acao == 10) {
@@ -250,34 +263,24 @@ class Main {
         } else {
           System.out.println("CPF inválido. Tente novamente");
         }
-
-
-        
+        Thread.sleep(1000);
       }
-      // Cadastrar Fisioterapeuta
+      // Cadastrar Paciente
       else if (acao == 11) {}
-      // Localizar Fisioterapeuta
+      // Localizar Paciente
       else if (acao == 12) {}
-      // Confirmar Nome
+      // Listar Pacientes Internados
       else if (acao == 13) {}
-      // Soltar Alta da UTI
+      // Listar Funcionários
       else if (acao == 14) {}
-
+      // Atendimento Normal
       else if (acao == 15) {}
-
+      // Atendimento com Médico
       else if (acao == 16) {}
-
+      // Confirmar Endereço
       else if (acao == 17) {}
-
+      // Internar Paciente
       else if (acao == 18) {}
-
-      else if (acao == 19) {}
-
-      else if (acao == 20) {}
-
-      else if (acao == 21) {}
-
-      else if (acao == 22) {}
       // Encerrando o Programa
       else {
         System.out.println("Sistema Encerrado!");
