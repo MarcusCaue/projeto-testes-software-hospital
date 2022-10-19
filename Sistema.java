@@ -7,7 +7,6 @@ public class Sistema implements FuncionalidadesIF {
 
   Hospital hospital;
 
-  // Função CONCLUÍDA
   /**
   * Esse método deve inicializar o banco de dados e carregar a informação do hospital em um objeto do tipo Hospital.
   */
@@ -379,8 +378,14 @@ public class Sistema implements FuncionalidadesIF {
   //Funcionalidade que cadastra o paciente no sistema 
   public void cadastraPaciente(String novoCpf, String novoNome, String novoEndereco){
     ArrayList<Paciente> pacientes = this.hospital.getPacientes();
-    Paciente paciente = new Paciente(novoCpf, novoNome, novoEndereco);
-    pacientes.add(paciente);
+
+    if (verificaCPF(novoCpf)) {
+      System.out.println("Já tem uma pessoa cadastrada com esse CPF digite outro.");
+    } else {
+      Paciente paciente = new Paciente(novoCpf, novoNome, novoEndereco);
+      pacientes.add(paciente);
+    }
+
   }
 
   public Paciente localizaPaciente(String cpf){
@@ -476,28 +481,28 @@ public class Sistema implements FuncionalidadesIF {
   }
 
   //verifica o valor dos atributos da pessoa que está cadastrada no sistema com esse cpf
-  public String confirmaNome(String cpf, String nome){
-    
-    ArrayList<Paciente> pacientes = this.hospital.getPacientes();
-    ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
+  public String recuperaNome(String cpf){
+    return "";
+    // ArrayList<Paciente> pacientes = this.hospital.getPacientes();
+    // ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
 
-    for (int paciente = 0; paciente < pacientes.size(); paciente++) {
-      if (pacientes.get(paciente).getCpf().equals(cpf) && pacientes.get(paciente).getNome().equals(nome)) {
-        return "O cpf " + cpf + " Pertence ao usuário " + nome;
-      }
-    }
+    // for (int paciente = 0; paciente < pacientes.size(); paciente++) {
+    //   if (pacientes.get(paciente).getCpf().equals(cpf) && pacientes.get(paciente).getNome().equals(nome)) {
+    //     return "O cpf " + cpf + " Pertence ao usuário " + nome;
+    //   }
+    // }
 
-    for (int funcionario = 0; funcionario < funcionarios.size(); funcionario++) {
-      if (funcionarios.get(funcionario).getCpf().equals(cpf) && funcionarios.get(funcionario).getNome().equals(nome)) {
-        return "O cpf " + cpf + " Pertence ao usuário " + nome;
-      }
-    }
+    // for (int funcionario = 0; funcionario < funcionarios.size(); funcionario++) {
+    //   if (funcionarios.get(funcionario).getCpf().equals(cpf) && funcionarios.get(funcionario).getNome().equals(nome)) {
+    //     return "O cpf " + cpf + " Pertence ao usuário " + nome;
+    //   }
+    // }
 
-    return "Não existe nenhum usuário cadastrado com esse CPF e/ou nome";
+    // return "Não existe nenhum usuário cadastrado com esse CPF e/ou nome";
   
   }
   
-  public String confirmaEndereco(String cpf, String endereco){return null;}
+  public String recuperaEndereco(String cpf){return null;}
 
   public void internaNaUti(Paciente p){
     ArrayList<Paciente> pacientes = this.hospital.getPacientes();
@@ -540,8 +545,17 @@ public class Sistema implements FuncionalidadesIF {
 
   public void cadastraMedico(String cpf, String nome, String crm){
     ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
-    Medico medico = new Medico(cpf, nome, crm);
-    funcionarios.add(medico);
+
+    if (verificaCPF(cpf)) {
+      System.out.println("Já tem uma pessoa cadastrada com esse CPF, digite outro.");
+    } 
+    else if (verificaCRM(crm)) {
+      System.out.println("Já tem um médico cadastrado com esse CRM, digite outro.");
+    } 
+    else {
+      Medico medico = new Medico(cpf, nome, crm);
+      funcionarios.add(medico);
+    }
   }
 
   public Medico localizaMedico(String crm){
@@ -561,8 +575,14 @@ public class Sistema implements FuncionalidadesIF {
 
   public void cadastraEnfermeiro(String novoCpf, String novoNome){
     ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
-    Enfermeiro enfermeiro = new Enfermeiro(novoCpf,novoNome);
-    funcionarios.add(enfermeiro);
+
+    if (verificaCPF(novoCpf)) {
+      System.out.println("Já tem uma pessoa cadastrada com esse CPF, digite outro.");
+    } 
+    else {
+      Enfermeiro enfermeiro = new Enfermeiro(novoCpf, novoNome);
+      funcionarios.add(enfermeiro);
+    }
   }
 
   public Enfermeiro localizaEnfermeiro(String cpf){
@@ -580,8 +600,15 @@ public class Sistema implements FuncionalidadesIF {
   
   public void cadastraFisioterapeuta(String cpf, String nome){
     ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
-    Fisioterapeuta fisioterapeuta = new Fisioterapeuta(cpf,nome);
-    funcionarios.add(fisioterapeuta);
+
+    if (verificaCPF(cpf)) {
+      System.out.println("Já tem uma pessoa cadastrada com esse CPF, digite outro.");
+    } 
+    else {
+      Fisioterapeuta fisioterapeuta = new Fisioterapeuta(cpf,nome);
+      funcionarios.add(fisioterapeuta);
+    }
+
   }
 
   public Fisioterapeuta localizaFisioterapeuta(String cpf) {
@@ -745,4 +772,56 @@ public class Sistema implements FuncionalidadesIF {
     return true;
   }
 
+  public boolean verificaCPF(String cpf) {
+    ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
+    ArrayList<Paciente> pacientes = this.hospital.getPacientes();
+
+    for (Funcionario f : funcionarios) {
+      if (f.getCpf().equals(cpf)) {
+        return true;
+      }
+    }
+
+    for (Paciente p : pacientes) {
+      if (p.getCpf().equals(cpf)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  public boolean verificaRG(String rg) {
+    ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
+    ArrayList<Paciente> pacientes = this.hospital.getPacientes();
+
+    for (Funcionario f : funcionarios) {
+      if (f.getRg().equals(rg)) {
+        return true;
+      }
+    }
+
+    for (Paciente p : pacientes) {
+      if (p.getRg().equals(rg)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  public boolean verificaCRM(String crm) {
+    ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
+
+    for (Funcionario f : funcionarios) {
+      if (f.getClass().getSimpleName().equals("Medico")) {
+        Medico m1 = (Medico) f;
+        if (m1.getCrm().equals(crm)) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
 } 

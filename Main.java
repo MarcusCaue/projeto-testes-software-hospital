@@ -18,14 +18,14 @@ class Main {
       System.out.println("Bem vindo ao nosso sistema hospitalar. \nExperimente nossas funcionalidades!");
       System.out.println(enfeite);
       System.out.println("O que deseja fazer hoje?\n");
-      System.out.println("1  - Alterar Nomes\n2  - Alterar Endereços\n3  - Atualizar Altura do Paciente\n4  - Atualizar Peso do Paciente\n5  - Listar Número de Pacientes internados \n6  - Listar Número de Funcionários\n7  - Cadastrar Funcionário\n8  - Localizar Funcionários\n9  - Confirmar Nome\n10 - Soltar uma Alta da UTI\n11 - Cadastrar Paciente\n12 - Localizar Paciente\n13 - Listar Pacientes Internados\n14 - Listar Funcionários\n15 - Atendimento Normal\n16 - Atendimento com Médico\n17 - Confirmar Endereço\n18 - Internar Paciente\n19 - Fechar o Programa");
+      System.out.println("1  - Alterar Nomes\n2  - Alterar Endereços\n3  - Atualizar Altura do Paciente\n4  - Atualizar Peso do Paciente\n5  - Listar Número de Pacientes internados \n6  - Listar Número de Funcionários\n7  - Cadastrar Funcionário\n8  - Localizar Funcionários\n9  - Confirmar Nome\n10 - Soltar uma Alta da UTI\n11 - Cadastrar Paciente\n12 - Localizar Paciente\n13 - Listar Pacientes Internados\n14 - Listar Funcionários\n15 - Atendimento\n16 - Confirmar Endereço\n17 - Internar Paciente\n18 - Fechar o Programa");
       
       // Validando a escolha do usuário
       int acao;
       do {
         System.out.print("Digite a sua escolha: ");
         acao = s.nextInt();
-      } while (acao < 1 || acao > 19);
+      } while (acao < 1 || acao > 18);
 
       // Pausando o programa por 1 segundo
       Thread.sleep(1000);
@@ -272,7 +272,7 @@ class Main {
         }
         Thread.sleep(1000);
       }
-      // Confimar Nome
+      // Recuperar Nome
       else if (acao == 9) {
         System.out.print("CPF da pessoa: "); s.nextLine();
         String cpf = s.nextLine(); 
@@ -280,7 +280,7 @@ class Main {
         String nome = s.nextLine();
 
         if (sistemaHospital.validaCPF(cpf) && sistemaHospital.validaNome(nome)) {
-          String resposta = sistemaHospital.confirmaNome(cpf, nome);
+          String resposta = sistemaHospital.recuperaNome(cpf);
           System.out.println(resposta);
         } else {
           System.out.println("Você digitou pelo menos um dos dados de forma inválida. Tente novamente");
@@ -310,17 +310,28 @@ class Main {
       // Localizar Paciente
       else if (acao == 12) {}
       // Listar Pacientes Internados
-      else if (acao == 13) {}
+      else if (acao == 13) {
+
+        System.out.println(enfeite);
+        System.out.println("PACIENTES INTERNADOS ATÉ O MOMENTO");
+        System.out.println(enfeite);
+
+        ArrayList<Paciente> pacientesInternados = sistemaHospital.listagemDePacientesInternados();
+
+        System.out.println("Confira abaixo os pacientes internados no momento: \n");
+
+
+
+      }
       // Listar Funcionários
       else if (acao == 14) {}
       // Atendimento Normal
       else if (acao == 15) {}
       // Atendimento com Médico
-      else if (acao == 16) {}
       // Confirmar Endereço
-      else if (acao == 17) {}
+      else if (acao == 16) {}
       // Internar Paciente
-      else if (acao == 18) {}
+      else if (acao == 17) {}
       // Encerrando o Programa
       else {
         System.out.println("Sistema Encerrado!");

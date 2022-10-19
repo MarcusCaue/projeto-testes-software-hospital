@@ -23,8 +23,8 @@ public interface FuncionalidadesIF {
   public void alteraEndereco(String cpf, String novoEndereco);
 
   //verifica o valor dos atributos da pessoa que está cadastrada no sistema com esse cpf
-  public String confirmaNome(String cpf, String nome);
-  public String confirmaEndereco(String cpf, String endereco);
+  public String recuperaNome(String cpf);
+  public String recuperaEndereco(String cpf);
 
   public void internaNaUti(Paciente p);
   public void altaDaUti(Paciente p);
