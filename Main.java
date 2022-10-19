@@ -36,8 +36,8 @@ class Main {
         System.out.println("MODIFICANDO NOME DE UMA PESSOA");
         System.out.println(enfeite);
 
-        System.out.print("Informe o CPF da pessoa que se deseja alterar o nome: ");
-        String cpf = s.nextLine(); s.nextLine();
+        System.out.print("Informe o CPF da pessoa que se deseja alterar o nome (XXX.XXX.XXX-XX): "); s.nextLine();
+        String cpf = s.nextLine(); 
 
         // Validando o CPF e o NOME
         if (sistemaHospital.validaCPF(cpf)) {
@@ -56,12 +56,19 @@ class Main {
       } 
       // Alterar Endereços
       else if (acao == 2) {
-        System.out.print("Informe o CPF da pessoa que se deseja alterar o endereço: ");
-        String cpf = s.nextLine(); s.nextLine();
-        System.out.print("Informe o novo endereço: ");
-        String novoEndereco = s.nextLine();
+        System.out.print("Informe o CPF da pessoa que se deseja alterar o endereço (XXX.XXX.XXX-XX): "); s.nextLine();
+        String cpf = s.nextLine();
+
+        if (sistemaHospital.validaCPF(cpf)) {
+          System.out.print("Informe o novo endereço: ");
+          String novoEndereco = s.nextLine();
+          
+          sistemaHospital.alteraEndereco(cpf, novoEndereco);
+        } else {
+          System.out.println();
+        }
+
         
-        sistemaHospital.alteraEndereco(cpf, novoEndereco);
         Thread.sleep(1000);
       }
       // Atualizar altura do paciente
@@ -324,6 +331,6 @@ class Main {
     // Finalizando o Sistema do Hospital
     sistemaHospital.finalizaSistema();
     System.out.println("\nSistema finalizado com sucesso! Obrigado e volte sempre!");
-    System.out.println(enfeite);
+    System.out.print(enfeite);
   }
 }

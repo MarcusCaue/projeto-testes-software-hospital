@@ -377,9 +377,24 @@ public class Sistema implements FuncionalidadesIF {
 
 
   //Funcionalidade que cadastra o paciente no sistema 
-  public void cadastraPaciente(String novoCpf, String novoNome, String novoEndereco){}
+  public void cadastraPaciente(String novoCpf, String novoNome, String novoEndereco){
+    ArrayList<Paciente> pacientes = this.hospital.getPacientes();
+    Paciente paciente = new Paciente(novoCpf, novoNome, novoEndereco);
+    pacientes.add(paciente);
+  }
 
-  public Paciente localizaPaciente(String cpf){return null;}
+  public Paciente localizaPaciente(String cpf){
+    ArrayList<Paciente> pacientes = this.hospital.getPacientes();
+    for(int paciente = 0; paciente < pacientes.size();paciente++){
+      if(pacientes.get(paciente).getClass().getSimpleName().equals("Paciente")){
+        Paciente m1 = (Paciente)pacientes.get(paciente);
+        if(m1.getCpf().equals(cpf)){
+          return m1;
+        }
+      }
+    }
+    return null;
+  }
 
   //altera o valor dos parametros da pessoa que é cadastrada no sistema com o cpf passado como parametro
   public void alteraNome(String cpf, String novoNome){
@@ -484,7 +499,15 @@ public class Sistema implements FuncionalidadesIF {
   
   public String confirmaEndereco(String cpf, String endereco){return null;}
 
-  public void internaNaUti(Paciente p){}
+  public void internaNaUti(Paciente p){
+    ArrayList<Paciente> pacientes = this.hospital.getPacientes();
+
+    for(int internado = 0;internado < pacientes.size();internado++){
+      if(pacientes.get(internado).equals(p) && pacientes.get(internado).estaNaUti() == false){
+        pacientes.get(internado).setEstaNaUti(true);
+      }
+    }
+  }
   
   public void altaDaUti(Paciente p){
     ArrayList<Paciente> pacientes = this.hospital.getPacientes();
@@ -617,9 +640,31 @@ public class Sistema implements FuncionalidadesIF {
     return nFuncionarios.size();
   }
   
-  public void atendimento(String cpfFuncionario, String cpfPaciente){}
+  public void atendimento(String cpfFuncionario, String cpfPaciente){
+    ArrayList<Funcionario> funcionario = this.hospital.getFuncionarios();
+    ArrayList<Paciente> pacientes = this.hospital.getPacientes();
+
+    for(int paciente = 0; paciente < pacientes.size();paciente++){
+      if(pacientes.get(paciente).getCpf().equals(cpfPaciente) && pacientes.get(paciente).getNome().equals(nomePaciente)){
+        
+        return "O cpf " + cpfPaciente + " Pertence ao usuário " + nomePaciente + " e ele será atendido pelo funcionário " + nomeFuncionario + " cadastrado do CPF " + cpfFuncionario;
+      }
+    }
+
+    return null;
+  }
   
-  public double atendimentoMedico(String crmMedico, String cpfPaciente){return 0;}
+  public double atendimentoMedico(String crmMedico, String cpfPaciente){
+    ArrayList<Funcionario> funcionario = this.hospital.getFuncionarios();
+    ArrayList<Paciente> pacientes = this.hospital.getPacientes();
+
+    for(int paciente = 0; paciente < pacientes.size();paciente++){
+      if(pacientes.get(paciente).getCpf().equals(cpfPaciente) && pacientes.get(paciente).getNome().equals(nomePaciente)){
+        
+        return "O cpf " + cpfPaciente + " Pertence ao usuário " + nomePaciente + " e ele será atendido pelo médico " + localizaMedico(crmMedico) + " cadastrado do CRM " + crmMedico;
+      }
+    }
+  }
 
   public boolean validaCPF(String cpf){
     String regexcpf = "[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}";
