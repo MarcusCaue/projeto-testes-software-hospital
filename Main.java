@@ -280,16 +280,16 @@ class Main {
 
         System.out.print("CPF da pessoa: "); s.nextLine();
         String cpf = s.nextLine(); 
-        System.out.print("Nome da pessoa: ");
-        String nome = s.nextLine();
 
-        if (sistemaHospital.validaCPF(cpf) && sistemaHospital.validaNome(nome)) {
+        Thread.sleep(1000);
+
+        if (sistemaHospital.validaCPF(cpf)) {
           String resposta = sistemaHospital.recuperaNome(cpf);
           System.out.println(resposta);
         } else {
-          System.out.println("Você digitou pelo menos um dos dados de forma inválida. Tente novamente");
+          System.out.println("Você digitou o dado de forma inválida. Tente novamente");
         }
-        Thread.sleep(1000);
+        Thread.sleep(2000);
       }
       // Alta da UTI
       else if (acao == 10) {
@@ -446,8 +446,25 @@ class Main {
           Thread.sleep(1000);
         }
       }
-      // Confirmar Endereço
-      else if (acao == 16) {}
+      // Recupera Endereço
+      else if (acao == 16) {
+        System.out.println(enfeite);
+        System.out.println("RECUPERANDO ENDEREÇO");
+        System.out.println(enfeite);
+
+        System.out.print("CPF da pessoa: "); s.nextLine();
+        String cpf = s.nextLine(); 
+
+        Thread.sleep(1000);
+
+        if (sistemaHospital.validaCPF(cpf)) {
+          String resposta = sistemaHospital.recuperaEndereco(cpf);
+          System.out.println(resposta);
+        } else {
+          System.out.println("Você digitou o dado de forma inválida. Tente novamente");
+        }
+        Thread.sleep(2000);
+      }
       // Internar Paciente
       else if (acao == 17) {}
       // Encerrando o Programa

@@ -80,8 +80,8 @@ public class Sistema implements FuncionalidadesIF {
 
       line += estaNaUti + ";";
 
-      if (procedimento == null || procedimento.equals("inexistente")) {
-        line += "inexistente";
+      if (procedimento == null || procedimento.equals("") || procedimento.equals("inexistente")) {
+        line += "null";
       } else {
         line += procedimento;
       }
@@ -120,7 +120,7 @@ public class Sistema implements FuncionalidadesIF {
       String funcao = f.getClass().getSimpleName();
       String nome = f.getNome();
       String cpf = f.getCpf();
-      String endereco = f.getEndereco();
+      String endereco = f.getEndereco().trim();
       String rg = f.getRg();
 
       String line = String.format("%s;%s;%s;",
@@ -134,7 +134,7 @@ public class Sistema implements FuncionalidadesIF {
         line += "null;";
       }
 
-      if (endereco.equals("")) {
+      if (endereco.equals("inexistente") || endereco.equals("")) {
         line += "null;";
       } else {
         line += endereco + ";";
@@ -291,7 +291,11 @@ public class Sistema implements FuncionalidadesIF {
         if (! estaNaUti.equals("null")) { 
           p.setEstaNaUti(Boolean.parseBoolean(estaNaUti)); 
         }
-        p.setProcedimento(procedimento); 
+        if (procedimento.equals("null")) {
+          p.setProcedimento("inexistente");
+        } else {
+          p.setProcedimento(procedimento); 
+        }
         
         // Por fim, adiciona o paciente à lista de Pacientes do Hospital
         this.hospital.addPaciente(p);
@@ -346,7 +350,11 @@ public class Sistema implements FuncionalidadesIF {
         else { f = new Fisioterapeuta(cpf, nome); }
 
         // Adicionando os outros atributos
-        if (! endereco.equals("null")) { f.setEndereco(endereco); }
+        if (! endereco.equals("null")) { 
+          f.setEndereco(endereco); 
+        } else {
+          f.setEndereco("inexistente");
+        }
         if (! rg.equals("null")) { f.setRg(rg); }
 
         // Adicionando o funcionário
@@ -480,27 +488,48 @@ public class Sistema implements FuncionalidadesIF {
 
   //verifica o valor dos atributos da pessoa que está cadastrada no sistema com esse cpf
   public String recuperaNome(String cpf){
-    return "";
-    // ArrayList<Paciente> pacientes = this.hospital.getPacientes();
-    // ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
 
-    // for (int paciente = 0; paciente < pacientes.size(); paciente++) {
-    //   if (pacientes.get(paciente).getCpf().equals(cpf) && pacientes.get(paciente).getNome().equals(nome)) {
-    //     return "O cpf " + cpf + " Pertence ao usuário " + nome;
-    //   }
-    // }
+    ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
+    Funcionario f = null;
 
-    // for (int funcionario = 0; funcionario < funcionarios.size(); funcionario++) {
-    //   if (funcionarios.get(funcionario).getCpf().equals(cpf) && funcionarios.get(funcionario).getNome().equals(nome)) {
-    //     return "O cpf " + cpf + " Pertence ao usuário " + nome;
-    //   }
-    // }
+    for (int funcionario = 0; funcionario < funcionarios.size(); funcionario++) {
+      if (funcionarios.get(funcionario).getCpf().equals(cpf)) {
+        f = funcionarios.get(funcionario);
+        return "Nome do funcionário de CPF " + cpf + ": " + f.getNome();
+      }
+    }
 
-    // return "Não existe nenhum usuário cadastrado com esse CPF e/ou nome";
+    Paciente p = localizaPaciente(cpf);
+
+    if (p == null) {
+      return "Não existe nenhum usuário cadastrado com esse CPF";
+    }
+
+    return "Nome do paciente de CPF " + cpf + ": " + p.getNome();
   
   }
   
-  public String recuperaEndereco(String cpf){return null;}
+  public String recuperaEndereco(String cpf){
+    
+    ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
+    Funcionario f = null;
+
+    for (int funcionario = 0; funcionario < funcionarios.size(); funcionario++) {
+      if (funcionarios.get(funcionario).getCpf().equals(cpf)) {
+        f = funcionarios.get(funcionario);
+        return "Endereço do funcionário de CPF " + cpf + ": " + f.getEndereco();
+      }
+    }
+
+    Paciente p = localizaPaciente(cpf);
+
+    if (p == null) {
+      return "Não existe nenhum usuário cadastrado com esse CPF";
+    }
+
+    return "Endereço do paciente de CPF " + cpf + ": " + p.getEndereco();
+  
+  }
 
   public void internaNaUti(Paciente p){
     ArrayList<Paciente> pacientes = this.hospital.getPacientes();
