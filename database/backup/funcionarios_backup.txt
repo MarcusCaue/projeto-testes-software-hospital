@@ -1,3 +1,7 @@
-Fisioterapeuta;332.443.433-12;Kleito de Esparta;null;Rua dos Filosofos Brabos;9.334.554.121
-Enfermeiro;123.456.789-10;Jonas de Samos;null;null;null
-Medico;123.456.789-10;Lidia Santiago;1234567;Rua Vila Maia;5.665.334.897
+Fisioterapeuta;332.443.433-12;Kleito de Esparta;null;Rua dos Filosofos Brabos;19.334.554-12
+Enfermeiro;123.456.239-10;Vinceslao Clink;null;null;null
+Medico;123.456.789-10;Lidia Santiago;123456;Rua Vila Maia;25.665.334-89
+Fisioterapeuta;332.443.545-12;Miguel Ryan Dantas de Freitas;null;Rua Aleatoria;32.443.443-11
+Enfermeiro;332.443.551-32;Paula Miranda;null;null;42.565.788-19
+Medico;543.237.866-12;Maria Luiza Magna;554233;null;null
+Medico;434.555.767-12;Lucas Gabriel;876621;null;null
