@@ -532,12 +532,11 @@ public class Sistema implements FuncionalidadesIF {
   }
 
   public void internaNaUti(Paciente p){
-    ArrayList<Paciente> pacientes = this.hospital.getPacientes();
-
-    for(int internado = 0;internado < pacientes.size();internado++){
-      if(pacientes.get(internado).equals(p) && pacientes.get(internado).estaNaUti() == false){
-        pacientes.get(internado).setEstaNaUti(true);
-      }
+    if (p.estaNaUti() == false) { 
+      p.setEstaNaUti(true);
+      System.out.println("Paciente de CPF " + p.getCpf() + " foi internado!");
+    } else {
+      System.out.println("Paciente de CPF " + p.getCpf() + " já está internado.");
     }
   }
   

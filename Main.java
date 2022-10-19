@@ -466,7 +466,31 @@ class Main {
         Thread.sleep(2000);
       }
       // Internar Paciente
-      else if (acao == 17) {}
+      else if (acao == 17) {
+        System.out.println(enfeite);
+        System.out.println("ITNERNANDO PACIENTE");
+        System.out.println(enfeite);
+
+        System.out.print("CPF da pessoa: "); s.nextLine();
+        String cpf = s.nextLine(); 
+
+        Thread.sleep(1000);
+
+        if (sistemaHospital.validaCPF(cpf)) {
+          Paciente pacienteInternar = sistemaHospital.localizaPaciente(cpf);
+
+          if (pacienteInternar == null) {
+            System.out.println("Não temos pacientes cadastrados com esse CPF.");
+          } else {
+            sistemaHospital.internaNaUti(pacienteInternar);
+          }
+        } else {
+          System.out.println("Você digitou o dado de forma inválida. Tente novamente");
+        }
+
+        Thread.sleep(2000);
+
+      }
       // Encerrando o Programa
       else {
         System.out.println("Sistema Encerrado!");
