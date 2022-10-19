@@ -51,8 +51,8 @@ public class Medico  extends Funcionario  {
   }
 
   public void atende(Paciente p) {
-    System.out.println("\nDr. " +getNome() + " está examinando o paciente " + p.getNome());
-    System.out.println("Receita do remedio X na dose: " + 1.65);
+    System.out.println("\nDr. " +getNome() + " está examinando o paciente " + p.getNome() + "...");
+    System.out.println("Receita do remedio 'MirnaxiconiconMaia' na dose: " + calculaDoseRemedio());
   
     System.out.println("Fim da consulta.");
   }
@@ -62,6 +62,6 @@ public class Medico  extends Funcionario  {
     //aguarde orientações da professora
     //dose = 10% do IMC do paciente
     
-    return 1.65;
+    return 0;
   }
 }

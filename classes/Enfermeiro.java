@@ -6,8 +6,8 @@ public class Enfermeiro extends Funcionario  {
 
   public void atende(Paciente p) {
     System.out.println("\nEnf. " + this.getNome() + " está atendendo o paciente " + p.getNome());
-    System.out.println("Medindo a pressão..");
-    System.out.println("Medindo saturação..");
-    System.out.println("Medindo temperatura..");
+    System.out.println("Medindo a pressão...");
+    System.out.println("Medindo saturação...");
+    System.out.println("Medindo temperatura...");
   }
 }

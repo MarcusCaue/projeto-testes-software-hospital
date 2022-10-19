@@ -2,7 +2,7 @@ import java.util.*;
 import classes.*;
 import java.lang.Thread;
 
-class Main {
+class MainRomero {
   public static void main(String[] args) throws InterruptedException {
     Scanner s = new Scanner(System.in);
 
@@ -18,14 +18,14 @@ class Main {
       System.out.println("Bem vindo ao nosso sistema hospitalar. \nExperimente nossas funcionalidades!");
       System.out.println(enfeite);
       System.out.println("O que deseja fazer hoje?\n");
-      System.out.println("1  - Alterar Nomes\n2  - Alterar Endereços\n3  - Atualizar Altura do Paciente\n4  - Atualizar Peso do Paciente\n5  - Listar Número de Pacientes internados \n6  - Listar Número de Funcionários\n7  - Cadastrar Funcionário\n8  - Localizar Funcionários\n9  - Confirmar Nome\n10 - Soltar uma Alta da UTI\n11 - Cadastrar Paciente\n12 - Localizar Paciente\n13 - Listar Pacientes Internados\n14 - Listar Funcionários\n15 - Atendimento\n16 - Confirmar Endereço\n17 - Internar Paciente\n18 - Fechar o Programa");
+      System.out.println("1  - Alterar Nomes\n2  - Alterar Endereços\n3  - Atualizar Altura do Paciente\n4  - Atualizar Peso do Paciente\n5  - Listar Número de Pacientes internados \n6  - Listar Número de Funcionários\n7  - Cadastrar Funcionário\n8  - Localizar Funcionários\n9  - Confirmar Nome\n10 - Soltar uma Alta da UTI\n11 - Cadastrar Paciente\n12 - Localizar Paciente\n13 - Listar Pacientes Internados\n14 - Listar Funcionários\n15 - Atendimento Normal\n16 - Atendimento com Médico\n17 - Confirmar Endereço\n18 - Internar Paciente\n19 - Fechar o Programa");
       
       // Validando a escolha do usuário
       int acao;
       do {
         System.out.print("Digite a sua escolha: ");
         acao = s.nextInt();
-      } while (acao < 1 || acao > 18);
+      } while (acao < 1 || acao > 19);
 
       // Pausando o programa por 1 segundo
       Thread.sleep(1000);
@@ -272,12 +272,8 @@ class Main {
         }
         Thread.sleep(1000);
       }
-      // Recuperar Nome
+      // Confimar Nome
       else if (acao == 9) {
-        System.out.println(enfeite);
-        System.out.println("RECUPERANDO NOME");
-        System.out.println(enfeite);
-
         System.out.print("CPF da pessoa: "); s.nextLine();
         String cpf = s.nextLine(); 
         System.out.print("Nome da pessoa: ");
@@ -293,11 +289,6 @@ class Main {
       }
       // Alta da UTI
       else if (acao == 10) {
-
-        System.out.println(enfeite);
-        System.out.println("ALTA DA UTI");
-        System.out.println(enfeite);
-
         System.out.print("Digite o CPF do Paciente: "); s.nextLine();
         String cpf = s.nextLine();
         boolean cpfValido = sistemaHospital.validaCPF(cpf);
@@ -316,141 +307,50 @@ class Main {
       }
       // Cadastrar Paciente
       else if (acao == 11) {
+        Scanner dados = new Scanner(System.in);
+        System.out.println("Digite o nome do seu paciente: ");
+        String nomepaciente = dados.nextLine();
+        System.out.println("Digite o CPF do seu paciente: XXX.XXX.XXX-XX ");
+        String cpfpaciente = dados.nextLine();
+        System.out.println("Digite o endereço do seu paciente: ");
+        String enderecopaciente = dados.nextLine();
 
-        System.out.println(enfeite);
-        System.out.println("CADASTRANDO UM PACIENTE");
-        System.out.println(enfeite);
-
-        // Como a pessoa está adicionando um novo paciente, vamos considerar que ele não está internado.
-        // Logo, 'estaNaUti' será false
-        System.out.print("Digite o nome do seu paciente: "); s.nextLine();
-        String nomePaciente = s.nextLine();
-        System.out.print("Digite o CPF do seu paciente (XXX.XXX.XXX-XX): ");
-        String cpfPaciente = s.nextLine();
-        System.out.print("Digite o endereço do seu paciente: ");
-        String enderecoPaciente = s.nextLine();
-        System.out.print("Digite o RG do seu paciente (XX.XXX.XXX-XX): ");
-        String rgPaciente = s.nextLine();
-        System.out.print("Digite o procedimento do seu paciente (se quiser): ");
-        String procedimentoPaciente = s.nextLine().trim();
-
-        if (procedimentoPaciente.equals("")) {
-          procedimentoPaciente = "inexistente";
+        if(sistemaHospital.validaNome(nomepaciente) && sistemaHospital.validaCPF(cpfpaciente) && sistemaHospital.validaNome(enderecopaciente)){
+          sistemaHospital.cadastraPaciente(nomepaciente, cpfpaciente, enderecopaciente);
+          System.out.println("Cadastrado com sucesso!");
+        }else{
+          System.out.println("Você errou ema algum dos campos, tente novamente!");
         }
-
-        System.out.print("Altura em centímetros: ");
-        int altura = s.nextInt();
-        System.out.print("Peso em quilos: ");
-        double peso = s.nextDouble();
-
-        // Variaveis de validação
-        boolean validaNome = sistemaHospital.validaNome(nomePaciente);
-        boolean validaCPF = sistemaHospital.validaCPF(cpfPaciente);
-        boolean validaEndereco = sistemaHospital.validaNome(enderecoPaciente);
-        boolean validaRg = sistemaHospital.validaRG(rgPaciente);
-
-        Thread.sleep(1000);
-
-        if (validaNome && validaCPF && validaEndereco && validaRg) {
-          // Verificando se já existe um Paciente com o mesmo CPF e/ou RG
-          boolean verificaCPF = sistemaHospital.verificaCPF(cpfPaciente);
-          boolean verificaRG = sistemaHospital.verificaRG(rgPaciente);
-
-          if (verificaCPF) {
-            System.out.println("Já existe um paciente cadastrado com esse CPF.");
-          } else if (verificaRG) {
-            System.out.println("Já existe um paciente cadastrado com esse RG.");
-          } else {
-            sistemaHospital.cadastraPaciente(cpfPaciente, nomePaciente, enderecoPaciente);
-            Paciente paciente = sistemaHospital.localizaPaciente(cpfPaciente);
-  
-            paciente.setAltura(altura); paciente.setPeso(peso); paciente.setProcedimento(procedimentoPaciente); paciente.setRg(rgPaciente);
-  
-            System.out.println("Cadastrado com sucesso!");
-          }
-        } else{
-          System.out.println("Você digitou algum dos campos de forma errada, tente novamente!");
-        }
-        Thread.sleep(1000);
       }
       // Localizar Paciente
       else if (acao == 12) {
-
-        System.out.println(enfeite);
-        System.out.println("LOCALIZANDO PACIENTE");
-        System.out.println(enfeite);
-
-        System.out.print("Digite o CPF do paciente que você deseja encontrar (XXX.XXX.XXX-XX): "); s.nextLine();
-        String cpfpaciente = s.nextLine();
+        Scanner dados = new Scanner(System.in);
+        System.out.println("Digite o CPF do paciente que você deseja encontrar: (XXX.XXX.XXX-XX)");
+        String cpfpaciente = dados.nextLine();
 
         if(sistemaHospital.validaCPF(cpfpaciente)){
           Paciente p = sistemaHospital.localizaPaciente(cpfpaciente);
-
-          if (p == null) {
-            System.out.println("Não temos pacientes cadastrados com esse CPF");
-          } else {
-            System.out.println("Seguem os dados do paciente:\nCPF: "+p.getCpf()+"\nNome: "+p.getNome()+"\nEndereço: "+p.getEndereco()+"\nRG: "+p.getRg()+"\nPeso: "+p.getAltura()+"\nUTI: "+p.estaNaUti()+"\nProcedimento: "+p.getProcedimento());
-            Thread.sleep(10000);
-          }
+          System.out.println("Seguem os dados do paciente:\n CPF: "+p.getCpf()+"\nNome: "+p.getNome()+"\nEndereço: "+p.getEndereco()+"\nRG: "+p.getRg()+"\nPeso :"+p.getAltura()+"\nUTI: "+p.estaNaUti()+"\nProcedimento: "+p.getProcedimento());
         }else{
           System.out.println("Você errou em algum dos campos, tente novamente!");
-          Thread.sleep(1000);
         }
+        Thread.sleep(10000);
       }
       // Listar Pacientes Internados
-      else if (acao == 13) {
-        System.out.println(enfeite);
-        System.out.println("PACIENTES INTERNADOS ATÉ O MOMENTO");
-        System.out.println(enfeite);
 
-        ArrayList<Paciente> pacientesInternados = sistemaHospital.listagemDePacientesInternados();
-
-        System.out.println("Confira abaixo os pacientes internados no momento: \n");
-        for (Paciente internado : pacientesInternados) {
-          System.out.println("- " + internado.getNome());
-          Thread.sleep(1000);
-        }
-        
-        Thread.sleep(1000);
-      }
+      else if (acao == 13) {}
       // Listar Funcionários
-      else if (acao == 14) {
-        System.out.println(enfeite);
-        System.out.println("FUNCIONÁRIOS CADASTRADOS");
-        System.out.println(enfeite);
+      else if (acao == 14) {}
 
-        ArrayList<Funcionario> funcionarios = sistemaHospital.listagemDeFuncionarios();
-
-        for (Funcionario f : funcionarios) {
-          System.out.println(f.getNome() + " - " + f.getClass().getSimpleName());
-          Thread.sleep(1000);
-        }
-      }
-      // Atendimento 
+      // Atendimento
       else if (acao == 15) {
-        System.out.println(enfeite);
-        System.out.println("ATENDIMENTO");
-        System.out.println(enfeite);
-
-        System.out.print("Digite o CPF do funcionário: "); s.nextLine();
-        String cpfFuncionario = s.nextLine();
-        System.out.print("Digite o CPF do Paciente: ");
-        String cpfPaciente = s.nextLine();
-
-        if (sistemaHospital.validaCPF(cpfFuncionario) && sistemaHospital.validaCPF(cpfPaciente)) {
-          sistemaHospital.atendimento(cpfFuncionario, cpfPaciente);
-          Thread.sleep(10000);
-          System.out.println("Fim do atendimento.");
-        } else {
-          System.out.println("Você digitou algum dos campos de forma errada. Tente novamente.");
-          Thread.sleep(1000);
-        }
       }
-      // Confirmar Endereço
+        // Confirmar Endereço
       else if (acao == 16) {}
-      // Internar Paciente
+          // Internar Paciente
       else if (acao == 17) {}
-      // Encerrando o Programa
+   // Encerrando o Programa
+      else if (acao == 18) {}
       else {
         System.out.println("Sistema Encerrado!");
         break;
