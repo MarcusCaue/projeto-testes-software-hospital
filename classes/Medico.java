@@ -52,16 +52,16 @@ public class Medico  extends Funcionario  {
 
   public void atende(Paciente p) {
     System.out.println("\nDr. " +getNome() + " está examinando o paciente " + p.getNome());
-    System.out.println("Receita do remedio X na dose: " + calculaDoseRemedio(p));
+    System.out.println("Receita do remedio X na dose: " + 1.65);
   
     System.out.println("Fim da consulta.");
   }
 
-  private double calculaDoseRemedio(Paciente p){
+  public double calculaDoseRemedio() {
     //nao deve ser implementada agora
     //aguarde orientações da professora
     //dose = 10% do IMC do paciente
     
-    return 0;
+    return 1.65;
   }
 }
