@@ -3,3 +3,5 @@
 212.332.545-12;Marcus Caue;Pref Leonardo Honorio de Melo;75.223.223-90;58.76;176;false;Alta
 776.667.665-42;Monize Maria Santiago;Rua Vila Maia;80.444.333-22;65.33;167;true;fila de espera
 099.322.553-43;Romero Galdino;Rua do Cassio;08.443.232-12;71.22;179;true;fila de espera
+857.695.362-00;Iago Silva;Rua Cavada;63.524.587-44;54.0;78;false;null
+857.695.362-08;Reinaldo;Rua de tebas;36.254.897-99;null;null;false;null
