@@ -311,7 +311,6 @@ class Main {
       else if (acao == 12) {}
       // Listar Pacientes Internados
       else if (acao == 13) {
-
         System.out.println(enfeite);
         System.out.println("PACIENTES INTERNADOS ATÉ O MOMENTO");
         System.out.println(enfeite);
@@ -319,12 +318,29 @@ class Main {
         ArrayList<Paciente> pacientesInternados = sistemaHospital.listagemDePacientesInternados();
 
         System.out.println("Confira abaixo os pacientes internados no momento: \n");
+        for (Paciente internado : pacientesInternados) {
+          System.out.println("- " + internado.getNome());
+          Thread.sleep(1000);
+        }
+        
+        Thread.sleep(1000);
+      }
+      // Listar Funcionários
+      else if (acao == 14) {
+        System.out.println(enfeite);
+        System.out.println("FUNCIONÁRIOS CADASTRADOS");
+        System.out.println(enfeite);
 
+        ArrayList<Funcionario> funcionarios = sistemaHospital.listagemDeFuncionarios();
+
+        for (Funcionario f : funcionarios) {
+          System.out.println(f.getNome() + " - " + f.getClass().getSimpleName());
+          Thread.sleep(1000);
+          
+        }
 
 
       }
-      // Listar Funcionários
-      else if (acao == 14) {}
       // Atendimento Normal
       else if (acao == 15) {}
       // Atendimento com Médico
