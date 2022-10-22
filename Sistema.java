@@ -830,4 +830,35 @@ public class Sistema implements FuncionalidadesIF {
 
     return false;
   }
+
+  public Pessoa localizaPessoa(String cpf) {
+    Pessoa p = null;
+    ArrayList<Paciente> pacientes = this.hospital.getPacientes();
+    ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
+
+    // Buscando por Pacientes com esse CPF
+    for (Paciente paciente: pacientes){
+      String cpfPacienteNaLista = paciente.getCpf();
+
+      if (cpfPacienteNaLista.equals(cpf)){
+        p = paciente;
+        break;
+      }
+    }  
+
+    // Buscando por Funcionários com esse CPF
+    if (p == null) {
+      for (Funcionario funcionario: funcionarios){
+        String cpfFuncNaLista = funcionario.getCpf();
+
+        if (cpfFuncNaLista.equals(cpf)){
+          p = funcionario;
+          break;
+        }
+      }
+    }
+
+    return p;
+  }
+
 } 

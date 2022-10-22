@@ -52,24 +52,35 @@ class Main {
         } else {
           System.out.println("CPF inválido. O nome não será modificado.");
         }
-        Thread.sleep(1000);    
+        Thread.sleep(1500);    
       } 
       // Alterar Endereços
       else if (acao == 2) {
+
+        System.out.println(enfeite);
+        System.out.println("MODIFICANDO ENDEREÇO DE UMA PESSOA");
+        System.out.println(enfeite);
+
         System.out.print("Informe o CPF da pessoa que se deseja alterar o endereço (XXX.XXX.XXX-XX): "); s.nextLine();
         String cpf = s.nextLine();
 
         if (sistemaHospital.validaCPF(cpf)) {
+          Pessoa p = sistemaHospital.localizaPessoa(cpf);
+
           System.out.print("Informe o novo endereço: ");
-          String novoEndereco = s.nextLine();
-          
-          sistemaHospital.alteraEndereco(cpf, novoEndereco);
+          String novoEndereco = s.nextLine().trim();
+
+          if (p != null && ! novoEndereco.equals("inexistente") && ! novoEndereco.equals("")) {
+            sistemaHospital.alteraEndereco(cpf, novoEndereco); 
+            System.out.println("Endereço alterado com sucesso!");
+          } else {
+            System.out.println("Você digitou algum dado errado, ou nós não encontramos uma pessoa cadsatrada com esse CPF. Tente novamente.");
+          }
         } else {
-          System.out.println();
+          System.out.println("O CPF digitado foi inválido. O endereço não será modificiado.");
         }
 
-        
-        Thread.sleep(1000);
+        Thread.sleep(1500);
       }
       // Atualizar altura do paciente
       else if (acao == 3) {
@@ -394,8 +405,9 @@ class Main {
           }
         }else{
           System.out.println("Você errou em algum dos campos, tente novamente!");
-          Thread.sleep(1000);
         }
+
+        Thread.sleep(1500);
       }
       // Listar Pacientes Internados
       else if (acao == 13) {
