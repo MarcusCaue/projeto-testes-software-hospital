@@ -501,7 +501,7 @@ class Main {
 
         if (sistemaHospital.validaCPF(cpfFuncionario) && sistemaHospital.validaCPF(cpfPaciente)) {
           sistemaHospital.atendimento(cpfFuncionario, cpfPaciente);
-          Thread.sleep(10000);
+          Thread.sleep(5000);
           System.out.println("Fim do atendimento.");
         } else {
           System.out.println("Você digitou algum dos campos de forma errada. Tente novamente.");

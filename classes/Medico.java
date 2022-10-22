@@ -52,6 +52,7 @@ public class Medico  extends Funcionario  {
 
   public void atende(Paciente p) {
     System.out.println("\nDr. " +getNome() + " está examinando o paciente " + p.getNome() + "...");
+    System.out.println("Auscultando o pulmão... \nAuscultando o coração... \nExaminando do fundo do olho... \nExaminando o ouvido...");
     System.out.println("Receita do remedio 'MirnaxiconiconMaia' na dose: " + calculaDoseRemedio());
   
     System.out.println("Fim da consulta.");
