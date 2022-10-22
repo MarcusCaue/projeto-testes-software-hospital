@@ -72,7 +72,6 @@ class Main {
 
           if (p != null && ! novoEndereco.equals("inexistente") && ! novoEndereco.equals("")) {
             sistemaHospital.alteraEndereco(cpf, novoEndereco); 
-            System.out.println("Endereço alterado com sucesso!");
           } else {
             System.out.println("Você digitou algum dado errado, ou nós não encontramos uma pessoa cadsatrada com esse CPF. Tente novamente.");
           }
@@ -84,26 +83,30 @@ class Main {
       }
       // Atualizar altura do paciente
       else if (acao == 3) {
-        System.out.print("Informe o CPF do paciente que se deseja alterar a altura: ");
-        String cpf = s.nextLine(); s.nextLine();
+
+        System.out.println(enfeite);
+        System.out.println("ATUALIZANDO ALTURA DE UM PACIENTE");
+        System.out.println(enfeite);
+
+        System.out.print("Informe o CPF do paciente que se deseja alterar a altura: "); s.nextLine();
+        String cpf = s.nextLine();
         System.out.print("Informe a altura desse paciente: ");
         int altura = s.nextInt();
-        
-        // Obtendo um objeto de paciente dado o seu CPF
-        Paciente p = null;
-        ArrayList<Paciente> pacientes = sistemaHospital.hospital.getPacientes();
 
-        for (Paciente paciente: pacientes){
-          String cpfPacienteNaLista = paciente.getCpf();
+        if (sistemaHospital.validaCPF(cpf)) {
+          // Obtendo um objeto de paciente dado o seu CPF
+          Paciente p = sistemaHospital.localizaPaciente(cpf);
 
-          if (cpfPacienteNaLista.equals(cpf)){
-            p = paciente;
-            break;
-          }       
+          if (p == null) {
+            System.out.println("Não encontramos paciente cadastrado com esse CPF.");
+          } else {
+            sistemaHospital.alteraAltura(p, altura);
+          }
+        } else {
+          System.out.println("CPF digitado foi inválido. Tente novamente.");
         }
 
-        sistemaHospital.alteraAltura(p, altura);
-        Thread.sleep(1000);  
+        Thread.sleep(1500);  
       }
       // Atualizar peso do paciente
       else if (acao == 4) {

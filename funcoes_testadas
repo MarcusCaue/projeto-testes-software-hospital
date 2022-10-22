@@ -11,5 +11,6 @@ localizaFisioterapeuta()
 confirmaNome()
 altaNaUti()
 alteraNome()
+alteraEndereco()
 cadastraPaciente()
 
