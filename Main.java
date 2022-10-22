@@ -110,6 +110,11 @@ class Main {
       }
       // Atualizar peso do paciente
       else if (acao == 4) {
+
+        System.out.println(enfeite);
+        System.out.println("ATUALIZANDO O PESO DE UM PACIENTE");
+        System.out.println(enfeite);
+
         System.out.print("Informe o CPF do paciente que se deseja alterar o peso: "); s.nextLine();
         String cpf = s.nextLine(); 
         System.out.print("Informe o peso desse paciente: ");
@@ -132,15 +137,25 @@ class Main {
       }    
       // Listar número de pacientes internados
       else if (acao == 5) {
+
+        System.out.println(enfeite);
+        System.out.println("QUANTIDADE DE PACIENTES INTERNADOS");
+        System.out.println(enfeite);
+
         int numPacientesInternados = sistemaHospital.getNumeroDePacientesInternados();
         System.out.println("No momento há " + numPacientesInternados + " pacientes internados.");
-        Thread.sleep(1000);
+        Thread.sleep(1500);
       }
       // Listar número de funcionários
       else if (acao == 6) {
+
+        System.out.println(enfeite);
+        System.out.println("QUANTIDADE DE FUNCIONÁRIOS CADASTRADOS");
+        System.out.println(enfeite);
+
         int numFuncionarios = sistemaHospital.getNumeroDeFuncionarios();
-        System.out.println("No momento há " + numFuncionarios + " Funcionários.");
-        Thread.sleep(1000);
+        System.out.println("No momento há " + numFuncionarios + " funcionários cadastrados no hospital.");
+        Thread.sleep(1500);
       } 
       // Cadastrar Funcionário
       else if (acao == 7) {
