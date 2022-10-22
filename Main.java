@@ -110,25 +110,25 @@ class Main {
       }
       // Atualizar peso do paciente
       else if (acao == 4) {
-        System.out.print("Informe o CPF do paciente que se deseja alterar o peso: ");
-        String cpf = s.nextLine(); s.nextLine();
+        System.out.print("Informe o CPF do paciente que se deseja alterar o peso: "); s.nextLine();
+        String cpf = s.nextLine(); 
         System.out.print("Informe o peso desse paciente: ");
         double peso = s.nextDouble();
           
-        // Obtendo um objeto de paciente dado o seu CPF
-        Paciente p = null;
-        ArrayList<Paciente> pacientes = sistemaHospital.hospital.getPacientes();
+        if (sistemaHospital.validaCPF(cpf)) {
+          // Obtendo um objeto de paciente dado o seu CPF
+          Paciente p = sistemaHospital.localizaPaciente(cpf);
 
-        for (Paciente paciente: pacientes){
-          String cpfPacienteNaLista = paciente.getCpf();
-
-          if (cpfPacienteNaLista.equals(cpf)){
-            p = paciente;
-          }       
+          if (p == null) {
+            System.out.println("Não encontramos paciente cadastrado com esse CPF.");
+          } else {
+            sistemaHospital.altaPeso(p, peso);
+          }
+        } else {
+          System.out.println("CPF digitado foi inválido. Tente novamente.");
         }
 
-        sistemaHospital.altaPeso(p, peso);  
-        Thread.sleep(1000);
+        Thread.sleep(1500);
       }    
       // Listar número de pacientes internados
       else if (acao == 5) {
