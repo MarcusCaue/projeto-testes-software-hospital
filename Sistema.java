@@ -695,7 +695,6 @@ public class Sistema implements FuncionalidadesIF {
   
   public void atendimento(String cpfFuncionario, String cpfPaciente){
     ArrayList<Funcionario> funcionarios = this.hospital.getFuncionarios();
-    ArrayList<Paciente> pacientes = this.hospital.getPacientes();
 
     Funcionario funcionarioAtende = null;
     Paciente pacienteAtendido = null;

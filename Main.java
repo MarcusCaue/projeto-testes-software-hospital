@@ -528,6 +528,8 @@ class Main {
       }
     }
 
+    s.close();
+
     // Finalizando o Sistema do Hospital
     sistemaHospital.finalizaSistema();
     System.out.println("\nSistema finalizado com sucesso! Obrigado e volte sempre!");

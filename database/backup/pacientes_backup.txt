@@ -1,7 +1,7 @@
-000.456.000-10;Amanda de Abdera;Rua dos Filosofos Brabos;10.234.567-89;89.97;165;false;Alta
-938.321.533-12;Jonas de Samos;Rua dos Filosofos Brabos;21.332.443-44;100.34;190;false;Alta
+000.456.000-10;Amanda de Abdera;Rua dos Filosofos Brabos;10.234.567-89;null;168;false;Alta
+938.321.533-12;Jonas de Samos;Rua dos Filosofos Brabos;21.332.443-44;100.45;190;false;Alta
 212.332.545-12;Marcus Caue;Pref Leonardo Honorio de Melo;75.223.223-90;58.76;176;false;Alta
-776.667.665-42;Monize Maria Santiago;Rua Vila Maia;80.444.333-22;65.33;167;true;fila de espera
-099.322.553-43;Romero Galdino;Rua do Cassio;08.443.232-12;71.22;179;true;fila de espera
-857.695.362-00;Iago Silva;Rua Cavada;63.524.587-44;54.0;78;false;null
-857.695.362-08;Reinaldo;Rua de tebas;36.254.897-99;null;null;false;null
+776.667.665-42;Monize Maria Santiago;Rua Vila Maia;80.444.333-22;65.33;167;false;fila de espera
+099.322.553-43;Romero Galdino;Rua do Cassio;08.443.232-12;71.22;179;false;fila de espera
+857.695.362-00;Iago Silva;Rua Cavada;63.524.587-44;54.0;78;true;null
+857.695.362-08;Reinaldo;Rua de Tebas;36.254.897-99;null;null;true;null
