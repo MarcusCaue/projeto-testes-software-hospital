@@ -140,7 +140,7 @@ public class Sistema implements FuncionalidadesIF {
         line += endereco + ";";
       }
 
-      if (rg.equals("")) {
+      if (rg.equals("") || rg.equals("inexistente")) {
         line += "null";
       } else {
         line += rg;
@@ -355,7 +355,11 @@ public class Sistema implements FuncionalidadesIF {
         } else {
           f.setEndereco("inexistente");
         }
-        if (! rg.equals("null")) { f.setRg(rg); }
+        if (rg.equals("null")) { 
+          f.setRg("inexistente"); 
+        } else {
+          f.setRg(rg); 
+        }
 
         // Adicionando o funcionário
         this.hospital.addFuncionario(f);

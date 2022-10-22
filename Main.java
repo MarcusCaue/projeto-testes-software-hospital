@@ -296,7 +296,7 @@ class Main {
             if (medicoAtual == null) {
               System.out.println("\nMédico não encontrado");
             } else {
-              System.out.println("\nDados do médico:\nNome: " + medicoAtual.getNome() + "\nCPF: " + medicoAtual.getCpf());
+              System.out.println("\nDados do médico:\nNome: " + medicoAtual.getNome() + "\nCPF: " + medicoAtual.getCpf() + "\nCRM: " + medicoAtual.getCrm() + "\nEndereço: " + medicoAtual.getEndereco() + "\nRG: " + medicoAtual.getRg());
             }
           } else {
             System.out.println("\nO CRM informado é inválido.");
@@ -313,7 +313,7 @@ class Main {
           if (enfermeiroAtual == null) {
             System.out.println("\nEnfermeiro não encontrado");
           } else {
-            System.out.println("\nDados do enfermeiro:\nNome: " + enfermeiroAtual.getNome() + "\nCPF: " + enfermeiroAtual.getCpf() );
+            System.out.println("\nDados do enfermeiro:\nNome: " + enfermeiroAtual.getNome() + "\nCPF: " + enfermeiroAtual.getCpf() + "\nEndereço: " + enfermeiroAtual.getEndereco() + "\nRG: " + enfermeiroAtual.getRg());
           }
         }
         // Localiza Fisioterapeuta
@@ -325,13 +325,13 @@ class Main {
           if (fisioterapeutaAtual == null) {
             System.out.println("\nFisioterapeuta não encontrado");
           } else {
-            System.out.println("\nDados do fisioterapeuta:\nNome: " + fisioterapeutaAtual.getNome() + "\nCPF: " + fisioterapeutaAtual.getCpf() );
+            System.out.println("\nDados do fisioterapeuta:\nNome: " + fisioterapeutaAtual.getNome() + "\nCPF: " + fisioterapeutaAtual.getCpf() + "\nEndereço: " +fisioterapeutaAtual.getEndereco() + "\nRG: " +fisioterapeutaAtual.getRg());
           }
         }
         else{
           System.out.println("\nOpção inválida... Tente novamente!");
         }
-        Thread.sleep(1000);
+        Thread.sleep(1500);
       }
       // Recuperar Nome
       else if (acao == 9) {
