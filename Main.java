@@ -167,7 +167,7 @@ class Main {
         System.out.print("\nDigite o número da opção que você deseja: ");
         int resposta = s.nextInt(); s.nextLine();
 
-        if(resposta == 1) {
+        if (resposta == 1) {
           // Recebe os dados//
           System.out.print("Digite o CPF do médico que você quer cadastrar (XXX.XXX.XXX-XX): ");
           String ocpf = s.nextLine();
@@ -175,20 +175,32 @@ class Main {
           String onome = s.nextLine();
           System.out.print("Digite o CRM do médico que você quer cadastrar (XXXXXX): ");
           String ocrm = s.nextLine();
-          System.out.print("Digite o endereço (se necessário): ");
+          System.out.print("Digite o endereço: ");
           String endereco = s.nextLine();
           System.out.print("Digite o RG (se necessário) (XX.XXX.XXX-XX): ");
           String rg = s.nextLine();
 
           // Valida os dados e usa o comando para enviá-los ao banco //
-          if(sistemaHospital.validaCPF(ocpf) && sistemaHospital.validaNome(onome) && sistemaHospital.validaCRM(ocrm)){
-            sistemaHospital.cadastraMedico(ocpf, onome, ocrm);
-            Medico m1 = sistemaHospital.localizaMedico(ocrm);
-            m1.setEndereco(endereco);
-            m1.setRg(rg);
-            System.out.println("\nCadastrado!");
+          if(sistemaHospital.validaCPF(ocpf) && sistemaHospital.validaNome(onome) && sistemaHospital.validaCRM(ocrm) && sistemaHospital.validaNome(endereco)){
+
+            if (sistemaHospital.verificaCPF(ocpf)) {
+              System.out.println("Já existe uma pessoa cadastrada com esse CPF.");
+            } else if (sistemaHospital.verificaCRM(ocrm)) {
+              System.out.println("Já existe médico cadastrado com esse CRM.");
+            } else {
+              Medico m1 = sistemaHospital.localizaMedico(ocrm);
+
+              if (m1 == null) {
+                sistemaHospital.cadastraMedico(ocpf, onome, ocrm);
+                m1 = sistemaHospital.localizaMedico(ocrm); 
+                m1.setEndereco(endereco);
+                m1.setRg(rg);
+                System.out.println("\nCadastrado!");
+              }
+            }
+
           }       
-          else{
+          else {
             System.out.println("\nVocê digitou algum dos seus dados no formato inválido... tente novamente!");
           }
         }
@@ -198,18 +210,28 @@ class Main {
           String ocpf = s.nextLine();
           System.out.print("Digite o Nome do enfermeiro que você quer cadastrar: ");
           String onome = s.nextLine();
-          System.out.print("Digite o endereço (se necessário): ");
+          System.out.print("Digite o endereço: ");
           String endereco = s.nextLine();
           System.out.print("Digite o RG (se necessário) (XX.XXX.XXX-XX): ");
           String rg = s.nextLine();
           
           // Valida os dados e usa o comando para enviá-los ao banco//
-          if(sistemaHospital.validaCPF(ocpf) && sistemaHospital.validaNome(onome)){
-            sistemaHospital.cadastraEnfermeiro(ocpf, onome);
-            Enfermeiro e1 = sistemaHospital.localizaEnfermeiro(ocpf);
-            e1.setEndereco(endereco);
-            e1.setRg(rg);
-            System.out.println("\nCadastrado!");
+          if (sistemaHospital.validaCPF(ocpf) && sistemaHospital.validaNome(onome) && sistemaHospital.validaNome(endereco)){
+
+            if (sistemaHospital.verificaCPF(ocpf)) {
+              System.out.println("Já existe uma pessoa cadastrada com esse CPF.");
+            } else {
+              Enfermeiro e1 = sistemaHospital.localizaEnfermeiro(ocpf);
+
+              if (e1 == null) {
+                sistemaHospital.cadastraEnfermeiro(ocpf, onome);
+                e1 = sistemaHospital.localizaEnfermeiro(ocpf);
+                e1.setEndereco(endereco);
+                e1.setRg(rg);
+                System.out.println("\nCadastrado!");
+              }
+            }
+
           }       
           else{
             System.out.println("\nVocê digitou algum dos seus dados no formato inválido... tente novamente!");
@@ -221,18 +243,28 @@ class Main {
           String ocpf = s.nextLine();
           System.out.print("Digite o Nome do fisioterapeuta que você quer cadastrar: ");
           String onome = s.nextLine();
-          System.out.print("Digite o endereço (se necessário): ");
+          System.out.print("Digite o endereço: ");
           String endereco = s.nextLine();
           System.out.print("Digite o RG (se necessário) (XX.XXX.XXX-XX): ");
           String rg = s.nextLine();
 
           // Valida os dados e usa o comando para enviá-los ao banco //
-          if(sistemaHospital.validaCPF(ocpf) && sistemaHospital.validaNome(onome)){
-            sistemaHospital.cadastraFisioterapeuta(ocpf, onome);   
-            Fisioterapeuta f1 = sistemaHospital.localizaFisioterapeuta(ocpf);
-            f1.setEndereco(endereco);
-            f1.setRg(rg);
-            System.out.println("\nCadastrado!");
+          if(sistemaHospital.validaCPF(ocpf) && sistemaHospital.validaNome(onome) && sistemaHospital.validaNome(endereco)){
+
+            if (sistemaHospital.verificaCPF(ocpf)) {
+              System.out.println("Já existe uma pessoa cadastrada com esse CPF.");
+            } else {
+              Fisioterapeuta f1 = sistemaHospital.localizaFisioterapeuta(ocpf);
+
+              if (f1 == null) {
+                sistemaHospital.cadastraFisioterapeuta(ocpf, onome);   
+                f1 = sistemaHospital.localizaFisioterapeuta(ocpf);
+                f1.setEndereco(endereco);
+                f1.setRg(rg);
+                System.out.println("\nCadastrado!");
+              }
+            }
+          
           }       
           else{
             System.out.println("\nVocê digitou algum dos seus dados no formato inválido... tente novamente!");
