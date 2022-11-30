@@ -16,8 +16,8 @@ class Main {
     Paciente p1 = sistema.localizaPaciente("1234");
     Paciente p2 = new Paciente("1234", "Maria Chiquinha", "Rua do Sol, nº 1");
     System.out.println(p1.equals(p2));
-    ArrayList pacientes = new ArrayList();
-    ArrayList funcionarios = new ArrayList();
+    ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
+    ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
 
     pacientes.add(p2);
 
@@ -67,6 +67,5 @@ class Main {
 
     System.out.println(sistema.getNumeroDeFuncionarios() == 2);
     System.out.println(sistema.getNumeroDePacientesInternados() == 2);
-    
   }
 }
