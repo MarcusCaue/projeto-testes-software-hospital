@@ -1,7 +1,7 @@
 import static org.junit.Assert.*;
 import org.junit.*;
-import junit.*;
 import java.util.ArrayList;
+import classes.*;
 
 public class SistemaTest {
     // RF1 - Casos 2, 5, 6, 7, 8, 9 e 11 não podem ser testados
@@ -91,7 +91,7 @@ public class SistemaTest {
         sistema.cadastraMedico("332.113.654-34", "", "533009");
 
         Medico medicoCadastrado = sistema.localizaMedico("987.234.234-09");
-        assertFalse(medicoCadastrado.getcrm().equals(""));
+        assertFalse(medicoCadastrado.getCrm().equals(""));
     }
     @Test
     public void cadMedCpfInvalidoTest() {
@@ -100,7 +100,7 @@ public class SistemaTest {
 
         sistema.cadastraMedico("", "Magna", "533009");
 
-        Enfermeiro medicoCadastrado = sistema.localizaMedico("");
+        Medico medicoCadastrado = sistema.localizaMedico("");
 
         assertFalse(medicoCadastrado.getCpf().equals(""));
     }
@@ -108,9 +108,10 @@ public class SistemaTest {
     public void cadMedCpfExistenteTest() {
         Sistema sistema = new Sistema();
         sistema.inicializaSistema();
+        
         // Enfermeiro "existente" no sistema
         sistema.cadastraMedico("987.234.234-09", "Paula", "123456");
-        Medico paula = sistema.localizaEnfermeiro("987.234.234-09");
+        Enfermeiro paula = sistema.localizaEnfermeiro("987.234.234-09");
 
         sistema.cadastraMedico("987.234.234-09", "Ana", "134561");
         Medico ana = (Medico) sistema.listagemDeFuncionarios().get(1);
@@ -170,7 +171,7 @@ public class SistemaTest {
 
         sistema.cadastraPaciente("987.234.234-09", "Ana", "Rua Vanessa da Mata");
 
-        assertEquals(sistema.localizaPaciente("987.234.234-09").nome, "Ana");
+        assertEquals(sistema.localizaPaciente("987.234.234-09").getNome(), "Ana");
     }
     @Test
     public void testNomeInvalido(){
@@ -179,7 +180,7 @@ public class SistemaTest {
 
         sistema.cadastraPaciente("987.234.234-09", "", "Rua Vanessa da Mata");
 
-        assertFalse(sistema.localizaPaciente("987.234.234-09").nome == "");
+        assertFalse(sistema.localizaPaciente("987.234.234-09").getNome() == "");
     }
     @Test
     public void testCPFForaFormato(){
@@ -187,7 +188,7 @@ public class SistemaTest {
         sistema.inicializaSistema();
         //Se o CPF no formato inválido foi adicionado ao sistema
         sistema.cadastraPaciente("2278459857297845", "Ana", "Rua Vanessa da Mata");
-        assertFalse(sistema.localizaPaciente("2278459857297845").cpf == "2278459857297845");
+        assertFalse(sistema.localizaPaciente("2278459857297845").getCpf() == "2278459857297845");
     }
     @Test
     public void testCPFExistente(){
@@ -200,7 +201,7 @@ public class SistemaTest {
  
         //Tentativa de cadastrar um paciente com o mesmo CPF
         sistema.cadastraPaciente("987.234.234-09", "Paola Bracho", "Rua aleatória na cidade do méxico");
-        Paciente paola = sistema.h.getPacientes().get(1);
+        Paciente paola = sistema.hospital.getPacientes().get(1);
 
         boolean condition = paola.getCpf().equals(ana.getCpf());
         assertFalse(condition);
@@ -212,7 +213,7 @@ public class SistemaTest {
 
         sistema.cadastraPaciente("987.234.234-09", "Ana", "");
 
-        assertFalse(sistema.localizaPaciente("987.234.234-09").endereco == "");
+        assertFalse(sistema.localizaPaciente("987.234.234-09").getEndereco() == "");
     }
 
     // RF8 - MIGUEL
