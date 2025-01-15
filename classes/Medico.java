@@ -1,26 +1,27 @@
 package classes;
 
 /**
-* Essa classe representa um médico que está trabalhando em um hospital.
-* @author Mirna Maia
-* @date 25/08/2022
-*/
-public class Medico  extends Funcionario  {
+ * Essa classe representa um médico que está trabalhando em um hospital.
+ * 
+ * @author Mirna Maia
+ * @date 25/08/2022
+ */
+public class Medico extends Funcionario {
   // Atributos da classe
   private String crm;
-  
+
   /*
-  * Método para construir um objeto do tipo Médico. 
-  * @param cpf O cpf do médico
-  * @param nome O nome do médico
-  * @param crm O crm do médico
-  */
-  public Medico (String novoCpf, String novoNome, String crm) {
+   * Método para construir um objeto do tipo Médico.
+   * 
+   * @param cpf O cpf do médico
+   * @param nome O nome do médico
+   * @param crm O crm do médico
+   */
+  public Medico(String novoCpf, String novoNome, String crm) {
     super(novoCpf, novoNome);
     this.crm = crm;
   }
 
-  
   public String getCrm() {
     return crm;
   }
@@ -28,41 +29,38 @@ public class Medico  extends Funcionario  {
   public void setCrm(String novo) {
     this.crm = novo;
   }
-  
- public String toString() {
-   String retorno = super.toString();
-   if (!getCrm().equals(""))
-     retorno += "\nCRM: " + getCrm();
-    return retorno;
- }
 
-  
+  public String toString() {
+    String retorno = super.toString();
+    if (!getCrm().equals(""))
+      retorno += "\nCRM: " + getCrm();
+    return retorno;
+  }
+
   // todos os métodos equals devem ter essa assinatura
   public boolean equals(Object obj) {
-    //se o objeto passado como parametro for do tipo Medico
+    // se o objeto passado como parametro for do tipo Medico
     if (obj instanceof Medico) {
-      //faremos um cast para conseguir compara os atributos 
+      // faremos um cast para conseguir compara os atributos
       Medico m = (Medico) obj;
       if (getCpf().equals(m.getCpf()) && getRg().equals(m.getRg()) && getCrm().equals(m.getCrm()))
         return true;
     }
-    //qualquer outra situação deve retornar false
+    // qualquer outra situação deve retornar false
     return false;
   }
 
   public void atende(Paciente p) {
-    System.out.println("\nDr. " +getNome() + " está examinando o paciente " + p.getNome() + "...");
+    System.out.println("\nDr. " + getNome() + " está examinando o paciente " + p.getNome() + "...");
     System.out.println("Auscultando o pulmão... \nAuscultando o coração... \nExaminando do fundo do olho... \nExaminando o ouvido...");
-    System.out.println("Receita do remedio 'MirnaxiconiconMaia' na dose: " + calculaDoseRemedio());
-  
+    System.out.printf("Receita do remedio 'MirnaxiconiconMaia' na dose: %.2lf\n", calculaDoseRemedio(p));
     System.out.println("Fim da consulta.");
   }
 
-  public double calculaDoseRemedio() {
-    //nao deve ser implementada agora
-    //aguarde orientações da professora
-    //dose = 10% do IMC do paciente
-    
-    return 0;
+  public double calculaDoseRemedio(Paciente p) {
+    double alturaPaciente = p.getAltura() / 100;
+    double imc = p.getPeso() / (alturaPaciente * alturaPaciente);
+    double dose = imc * 0.10;
+    return dose;
   }
 }

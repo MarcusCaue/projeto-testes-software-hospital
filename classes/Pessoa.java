@@ -6,7 +6,7 @@ package classes;
  * @author Mirna Maia
  * @date 25/08/2022
  */
-public abstract class Pessoa{
+public abstract class Pessoa {
   // Atributos da classe
   protected String nome;
   protected String cpf;
@@ -17,10 +17,7 @@ public abstract class Pessoa{
    * Método para construir um objeto do tipo Pessoa.
    * 
    * @param cpf O cpf da Pessoa
-   * 
    * @param nome O nome da Pessoa
-   * 
-   * @param crm O crm da Pessoa
    */
   public Pessoa(String novoCpf, String novoNome) {
     this.nome = novoNome;
@@ -37,13 +34,14 @@ public abstract class Pessoa{
     this.nome = novo;
   }
 
-    public String getEndereco() {
+  public String getEndereco() {
     return endereco;
   }
 
   public void setEndereco(String novo) {
     this.endereco = novo;
   }
+
   public String getCpf() {
     return cpf;
   }
@@ -68,7 +66,7 @@ public abstract class Pessoa{
       retorno += "\nCPF: " + getCpf();
     if (!getRg().equals(""))
       retorno += "\nRG: " + getRg();
-   
+
     return retorno;
   }
 
